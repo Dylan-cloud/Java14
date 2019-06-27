@@ -13,6 +13,48 @@
     <result column="status" jdbcType="INTEGER" property="status" />
     <result column="note" jdbcType="VARCHAR" property="note" />
   </resultMap>
+  <!--扩展的sql-->
+  <!--批量删除-->
+  <delete id="deleteBatch">
+    delete
+    from  custom
+    where custom_id in
+    <foreach collection="array" item="id" open="(" close=")" separator=",">
+      #{id}
+    </foreach>
+  </delete>
+<!--修改状态，批量启用停用-->
+  <update id="changeStatus">
+    update custom
+    set status= #{status}
+    where custom_id in
+    <foreach collection="array" item="id" open="(" close=")" separator=",">
+      #{id}
+    </foreach>
+  </update>
+  <!--修改备注-->
+  <update id="updateNote" parameterType="com.cskaoyan.bean.Custom">
+    update custom
+    set note=#{note}
+    where custom_id=#{custonId,jdbcType=VARCHAR}
+  </update>
+<!--按用户id搜索-->
+<select id="searchCustomByCustomId" parameterType="string" resultMap="BaseResultMap">
+  select
+  *
+  from custom
+  where
+  custom_id like CONCAT(
+  '%',#{customId},'%'
+  )
+</select>
+
+<select id="findAll" resultMap="BaseResultMap">
+  select
+  *
+  from custom
+</select>
+  <!--逆向的sql-->
   <sql id="Base_Column_List">
     custom_id, custom_name, full_name, address, fax, email, owner_name, owner_tel, status, 
     note
