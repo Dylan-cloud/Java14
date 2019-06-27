@@ -1,8 +1,0 @@
-成员信息
-田雪健  dieFreiheit  计划进度
-张昆    ZKQuinn      物料监控
-申京傲  aobusi	     工艺监控
-赵健林  jin-yuan     设备管理
-陈帆    chenfanz     人员监控
-安泽印  Dr-Az        质量监控
-熊遥    Dylan-cloud  系统管理 
