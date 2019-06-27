@@ -2,6 +2,8 @@ package com.cskaoyan.service.Technology;
 
 import com.cskaoyan.bean.Technology.Technology;
 
+import java.util.List;
+
 public interface TechnologyService {
 
     int deleteByPrimaryKey(String technologyId);
@@ -12,8 +14,11 @@ public interface TechnologyService {
 
     Technology selectByPrimaryKey(String technologyId);
 
+    List<Technology> selectByName(String technologyName);
+
     int updateByPrimaryKeySelective(Technology record);
 
     int updateByPrimaryKey(Technology record);
 
+    List<Technology> selectAll();
 }

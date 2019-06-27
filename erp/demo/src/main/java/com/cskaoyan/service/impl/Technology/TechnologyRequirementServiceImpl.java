@@ -6,6 +6,8 @@ import com.cskaoyan.service.Technology.TechnologyRequirementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TechnologyRequirementServiceImpl implements TechnologyRequirementService {
 
@@ -40,5 +42,10 @@ public class TechnologyRequirementServiceImpl implements TechnologyRequirementSe
     @Override
     public int updateByPrimaryKey(TechnologyRequirement record) {
         return technologyRequirementMapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public List<TechnologyRequirement> selectAll() {
+        return technologyRequirementMapper.selectAll();
     }
 }
