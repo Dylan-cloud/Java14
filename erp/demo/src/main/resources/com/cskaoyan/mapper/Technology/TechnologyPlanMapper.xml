@@ -11,9 +11,6 @@
     <result column="technology_plan_start" jdbcType="TIMESTAMP" property="technologyPlanStart" />
     <result column="technology_plan_end" jdbcType="TIMESTAMP" property="technologyPlanEnd" />
   </resultMap>
-  <resultMap id="AddResultMap" type="com.erp.bean.Technology.TechnologyPlanVo" extends="BaseResultMap">
-    <result column="technology_name" jdbcType="VARCHAR" property="technologyName"/>
-  </resultMap>
   <sql id="Base_Column_List">
     technology_plan_id, technology_id, batch_amount, start_plan, end_plan, commit_plan, 
     technology_plan_start, technology_plan_end
@@ -24,23 +21,6 @@
     from technology_plan
     where technology_plan_id = #{technologyPlanId,jdbcType=VARCHAR}
   </select>
-
-  <select id="selectAll" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from technology_plan
-    where 1 = 1
-  </select>
-
-  <select id="selectByName" resultMap="AddResultMap">
-    SELECT * FROM technology_plan LEFT JOIN technology ON technology.technology_id = technology_plan.technology_id
-    <where>
-      <if test="_parameter!=null">
-        technology_name=#{technologyName,jdbcType=VARCHAR}
-      </if>
-    </where>
-  </select>
-
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from technology_plan
     where technology_plan_id = #{technologyPlanId,jdbcType=VARCHAR}

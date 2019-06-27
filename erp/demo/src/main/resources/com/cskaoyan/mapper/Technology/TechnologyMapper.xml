@@ -22,26 +22,6 @@
     from technology
     where technology_id = #{technologyId,jdbcType=VARCHAR}
   </select>
-
-  <!--查询所有数据-->
-  <select id="selectAll" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from technology
-    where 1 = 1
-  </select>
-
-  <select id="selectByName" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from technology
-    <where>
-      <if test="_parameter!= null">
-        technology_name like CONCAT('%',#{technologyName},'%');
-      </if>
-    </where>
-  </select>
-
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from technology
     where technology_id = #{technologyId,jdbcType=VARCHAR}

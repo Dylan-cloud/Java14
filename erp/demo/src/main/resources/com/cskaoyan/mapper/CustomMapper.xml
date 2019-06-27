@@ -24,10 +24,10 @@
         </foreach>
     </delete>
     <!--修改-->
-    <update id="change">
+    <update id="updateall">
         update custom
         set custom_name=#{custom_name},full_name=${full_name},address=${address},fax=${fax},
-        email=${email},owner_name=${owner_name},ower_tel
+        email=${email},owner_name=${owner_name},ower_tel=${owner_tel},status=${status},note=${note}
         where custom_id in
         <foreach collection="array" item="id" open="(" close=")" separator=",">
             #{id}
@@ -49,13 +49,23 @@
   '%',#{customId},'%'
   )
 </select>
+<!--按照用户的命名搜索-->
+    <select id="searchCustomByCustomName" parameterType="string" resultMap="BaseResultMap">
+  select
+  *
+  from custom
+  where
+  custom_name like CONCAT(
+  '%',#{customName},'%'
+  )
+</select>
 
     <select id="findAll" resultMap="BaseResultMap">
   select
   *
   from custom
 </select>
-    <
+
     <!--逆向的sql-->
     <sql id="Base_Column_List">
     custom_id, custom_name, full_name, address, fax, email, owner_name, owner_tel, status, 
@@ -148,6 +158,7 @@
             </if>
         </trim>
     </insert>
+
     <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.Custom">
         update custom
         <set>

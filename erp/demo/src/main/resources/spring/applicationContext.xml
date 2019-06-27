@@ -14,13 +14,25 @@
 </context:component-scan>
 <bean id="myds" class="com.alibaba.druid.pool.DruidDataSource">
     <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-    <property name="url" value="jdbc:mysql://localhost:3306/production_ssm"/>
+    <property name="url" value="jdbc:mysql://localhost:3306/production_ssm?characterEncoding=utf8"/>
     <property name="username" value="root"/>
     <property name="password" value="12345"/>
+
 </bean>
-    <!--在spring中注入数据源-->
+    <!--在spring中整合mybatis的配置-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="myds"/>
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageHelper">
+                    <property name="properties">
+                        <value>
+                            dialect=mysql
+                        </value>
+                    </property>
+                </bean>
+            </array>
+        </property>
     </bean>
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.cskaoyan.mapper"/>

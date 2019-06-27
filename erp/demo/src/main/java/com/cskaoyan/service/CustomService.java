@@ -15,7 +15,13 @@ public interface CustomService {
     List<Custom> find() throws Exception;
     //得到page对象
     Page getList(int page,int rows,Custom custom)throws Exception;
+    Page searchCustomById(String searchValue,int page,int rows);
+    Page searchCustomByName(String searchValue, int page, int rows);
     Custom get(String string)throws Exception;
+    int insert(Custom custom)throws Exception;
+    int update(Custom custom)throws Exception;
+    int delete(Custom custom)throws Exception;
+    int deleteBatch(String[] ids)throws Exception;
 
 
 }
