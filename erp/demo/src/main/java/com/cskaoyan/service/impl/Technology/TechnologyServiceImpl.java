@@ -1,10 +1,13 @@
 package com.cskaoyan.service.Impl.Technology;
 
 import com.cskaoyan.bean.Technology.Technology;
+
 import com.cskaoyan.mapper.Technology.TechnologyMapper;
 import com.cskaoyan.service.Technology.TechnologyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class TechnologyServiceImpl implements TechnologyService {
@@ -33,6 +36,11 @@ public class TechnologyServiceImpl implements TechnologyService {
     }
 
     @Override
+    public List<Technology> selectByName(String technologyName) {
+        return technologyMapper.selectByName(technologyName);
+    }
+
+    @Override
     public int updateByPrimaryKeySelective(Technology record) {
         return technologyMapper.updateByPrimaryKeySelective(record);
     }
@@ -40,5 +48,10 @@ public class TechnologyServiceImpl implements TechnologyService {
     @Override
     public int updateByPrimaryKey(Technology record) {
         return technologyMapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public List<Technology> selectAll() {
+        return technologyMapper.selectAll();
     }
 }

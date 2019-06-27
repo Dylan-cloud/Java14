@@ -2,6 +2,8 @@ package com.cskaoyan.service.Technology;
 
 import com.cskaoyan.bean.Technology.TechnologyRequirement;
 
+import java.util.List;
+
 public interface TechnologyRequirementService {
 
     int deleteByPrimaryKey(String technologyRequirementId);
@@ -16,4 +18,5 @@ public interface TechnologyRequirementService {
 
     int updateByPrimaryKey(TechnologyRequirement record);
 
+    List<TechnologyRequirement> selectAll();
 }

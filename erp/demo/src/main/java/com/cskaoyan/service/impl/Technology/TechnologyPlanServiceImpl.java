@@ -6,6 +6,8 @@ import com.cskaoyan.service.Technology.TechnologyPlanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TechnologyPlanServiceImpl implements TechnologyPlanService {
 
@@ -40,5 +42,15 @@ public class TechnologyPlanServiceImpl implements TechnologyPlanService {
     @Override
     public int updateByPrimaryKey(TechnologyPlan record) {
         return technologyPlanMapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public List<TechnologyPlan> selectAll() {
+        return technologyPlanMapper.selectAll();
+    }
+
+    @Override
+    public List<TechnologyPlan> selectByName(String searchValue) {
+        return technologyPlanMapper.selectByName(searchValue);
     }
 }
