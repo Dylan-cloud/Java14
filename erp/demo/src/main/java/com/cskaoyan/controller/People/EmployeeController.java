@@ -17,13 +17,6 @@ public class EmployeeController {
     @Autowired
     EmployeeService employeeService;
 
-  /*  @RequestMapping("get_data")
-    @ResponseBody
-    public List<Employee> getData(){
-        List<Employee> allEmployee = employeeService.findAllEmployee();
-        return allEmployee;
-    }*/
-
     @RequestMapping("*_judge")
     @ResponseBody
     public String judge(){

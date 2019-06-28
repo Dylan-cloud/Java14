@@ -17,16 +17,7 @@ public class DepartmentController {
     @Autowired
     DepartmentService departmentService;
 
-  /*  @RequestMapping("get_data")
-    @ResponseBody
-    public List<Department> getData(){
-        List<Department> allDepartment = departmentService.findAllDepartment();
-        return allDepartment;
-    }
-*/
 
-
-    //_judge的处理
     @RequestMapping("*_judge")
     @ResponseBody
     public String judge(){
@@ -38,13 +29,6 @@ public class DepartmentController {
     public String find(){
         return "department_list";
     }
-
-    /*@RequestMapping("list")
-    @ResponseBody
-    public List<Department> list(){
-        List<Department> departmentList = departmentService.selectAlldepartment();
-        return departmentList;
-    }*/
 
     @RequestMapping("list")
     @ResponseBody
