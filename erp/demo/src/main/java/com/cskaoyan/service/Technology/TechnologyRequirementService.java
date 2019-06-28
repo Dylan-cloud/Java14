@@ -1,8 +1,7 @@
 package com.cskaoyan.service.Technology;
 
 import com.cskaoyan.bean.Technology.TechnologyRequirement;
-
-import java.util.List;
+import com.cskaoyan.util.EUDataGridResult;
 
 public interface TechnologyRequirementService {
 
@@ -18,5 +17,5 @@ public interface TechnologyRequirementService {
 
     int updateByPrimaryKey(TechnologyRequirement record);
 
-    List<TechnologyRequirement> selectAll();
+    EUDataGridResult selectPageTechnology(int page, int rows);
 }

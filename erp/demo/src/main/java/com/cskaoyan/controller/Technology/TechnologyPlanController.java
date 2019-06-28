@@ -2,17 +2,18 @@ package com.cskaoyan.controller.Technology;
 
 import com.cskaoyan.bean.Technology.TechnologyPlan;
 import com.cskaoyan.service.Impl.Technology.TechnologyPlanServiceImpl;
+import com.cskaoyan.util.EUDataGridResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
-import java.util.List;
+
 import java.util.Map;
 
 @Controller
-@RequestMapping("/TechnologyPlan")
+@RequestMapping("/technologyPlan")
 public class TechnologyPlanController {
 
     @Autowired
@@ -64,6 +65,7 @@ public class TechnologyPlanController {
         return "/technologyPlan_list";
     }
 
+/*
     @RequestMapping("/search_technologyPlan_by_technologyPlanName")
     public Map selectTechnologyPlanByName(String searchValue){
         Map<String,Object> map = new HashMap<>();
@@ -74,12 +76,27 @@ public class TechnologyPlanController {
         map.put("rows",list);
         return map;
     }
+*/
 
     @RequestMapping("/update_all")
+    @ResponseBody
     public Map updateAll(TechnologyPlan technologyPlan){
         technologyPlanService.updateByPrimaryKeySelective(technologyPlan);
         Map<String,Object> map=new HashMap<>();
         map.put("status",200);
         return map;
+    }
+
+    @RequestMapping("/list")
+    @ResponseBody
+    public EUDataGridResult selectAll(int page, int rows) {
+        EUDataGridResult result = technologyPlanService.selectPageTechnology(page, rows);
+        return result;
+    }
+
+
+    @RequestMapping("/find")
+    public String findTechnologyPlan(){
+        return "technologyPlan_list";
     }
 }

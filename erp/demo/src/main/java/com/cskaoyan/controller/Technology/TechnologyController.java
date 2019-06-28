@@ -2,6 +2,7 @@ package com.cskaoyan.controller.Technology;
 
 import com.cskaoyan.bean.Technology.Technology;
 import com.cskaoyan.service.Impl.Technology.TechnologyServiceImpl;
+import com.cskaoyan.util.EUDataGridResult;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -18,7 +19,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/Technology")
+@RequestMapping("/technology")
 public class TechnologyController {
 
     @Autowired
@@ -50,25 +51,39 @@ public class TechnologyController {
 
     @RequestMapping("/edit_judge")
     public String edit_judge(){
-        return "/technology_list";
+        return "technology_list";
     }
 
     @RequestMapping("/edit")
     public String edit(){
-        return "/technology_edit";
+        return "technology_edit";
     }
 
+/*//    @RequestMapping("/find")
+//    public ModelAndView findTechnology(){
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.setViewName("technology_list");
+//        return modelAndView;
+//    }*/
     @RequestMapping("/find")
     public String findTechnology(){
         return "technology_list";
     }
 
+    @RequestMapping("/update_all")
+    @ResponseBody
+    public Map editTechnology(Technology technology){
+        technologyService.updateByPrimaryKeySelective(technology);
+        Map<String,Object> map=new HashMap<>();
+        map.put("status",200);
+        return map;
+    }
 
-    @RequestMapping("/get_data")
+/*    @RequestMapping("/get_data")
     @ResponseBody
     public List<Technology> getDate(){
         return technologyService.selectAll();
-    }
+    }*/
 
     @RequestMapping("/get/{id}")
     @ResponseBody
@@ -90,21 +105,14 @@ public class TechnologyController {
         return map;
     }
 
-    /**
-     * 测试
-     * @return
-     */
-    @RequestMapping("/login")
-    public ModelAndView login(){
-        ModelAndView modelAndView = new ModelAndView();
-/*        modelAndView.setViewName("/WEB-INF/jsp/login.jsp");*/
-        modelAndView.setViewName("home");
-        return modelAndView;
-    }
-
     @RequestMapping("/list")
     @ResponseBody
-    public Map findTechnologys(Integer page,Integer rows){
+    public EUDataGridResult selectAll(int page, int rows) {
+        EUDataGridResult result = technologyService.selectPageTechnology(page, rows);
+        return result;
+    }
+
+/*    public Map findTechnologys(Integer page,Integer rows){
         Map<String,Object> map=new HashMap<>();
         Page page1= PageHelper.startPage(page,rows);
         //获取工艺列表
@@ -114,7 +122,7 @@ public class TechnologyController {
         map.put("total",pageInfo.getTotal());
         map.put("rows",list);
         return map;
-    }
+    }*/
     /**
      *
      * @param searchValue
@@ -140,7 +148,7 @@ public class TechnologyController {
      * @param searchValue
      * @return
      */
-    @RequestMapping("/search_technology_by_technologyName")
+/*    @RequestMapping("/search_technology_by_technologyName")
     @ResponseBody
     public Map selectTechnologyByName(String searchValue){
         List<Technology> list=technologyService.selectByName(searchValue);
@@ -150,13 +158,6 @@ public class TechnologyController {
         map.put("total",total);
         map.put("rows",list);
         return map;
-    }
-    @RequestMapping("/update_all")
-    @ResponseBody
-    public Map editTechnology(Technology technology){
-        technologyService.updateByPrimaryKeySelective(technology);
-        Map<String,Object> map=new HashMap<>();
-        map.put("status",200);
-        return map;
-    }
+    }*/
+
 }

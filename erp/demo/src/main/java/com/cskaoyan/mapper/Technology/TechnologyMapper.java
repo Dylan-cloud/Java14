@@ -13,8 +13,6 @@ public interface TechnologyMapper {
 
     Technology selectByPrimaryKey(String technologyId);
 
-    List<Technology> selectByName(String TechnologyName);
-
     int updateByPrimaryKeySelective(Technology record);
 
     int updateByPrimaryKey(Technology record);

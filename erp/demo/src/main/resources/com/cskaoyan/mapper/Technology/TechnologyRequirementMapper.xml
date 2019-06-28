@@ -8,6 +8,9 @@
     <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
     <result column="revise_time" jdbcType="TIMESTAMP" property="reviseTime" />
   </resultMap>
+  <resultMap id="AddResultMap" type="com.cskaoyan.bean.Technology.TechnologyRequirementVo" extends="BaseResultMap">
+    <result column="technology_name" jdbcType="VARCHAR" property="technologyName"/>
+  </resultMap>
   <sql id="Base_Column_List">
     technology_requirement_id, technology_id, requirement, add_time, revise_time
   </sql>
@@ -17,6 +20,12 @@
     from technology_requirement
     where technology_requirement_id = #{technologyRequirementId,jdbcType=VARCHAR}
   </select>
+
+  <!--查询所有数据-->
+  <select id="selectAll" resultMap="AddResultMap">
+    SELECT * FROM technology_requirement r LEFT JOIN technology t ON r.technology_id =t.technology_id
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from technology_requirement
     where technology_requirement_id = #{technologyRequirementId,jdbcType=VARCHAR}

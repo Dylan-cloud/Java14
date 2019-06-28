@@ -1,9 +1,11 @@
 package com.cskaoyan.service.Impl.Technology;
 
 import com.cskaoyan.bean.Technology.Technology;
-
 import com.cskaoyan.mapper.Technology.TechnologyMapper;
 import com.cskaoyan.service.Technology.TechnologyService;
+import com.cskaoyan.util.EUDataGridResult;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,11 +38,6 @@ public class TechnologyServiceImpl implements TechnologyService {
     }
 
     @Override
-    public List<Technology> selectByName(String technologyName) {
-        return technologyMapper.selectByName(technologyName);
-    }
-
-    @Override
     public int updateByPrimaryKeySelective(Technology record) {
         return technologyMapper.updateByPrimaryKeySelective(record);
     }
@@ -51,7 +48,16 @@ public class TechnologyServiceImpl implements TechnologyService {
     }
 
     @Override
-    public List<Technology> selectAll() {
-        return technologyMapper.selectAll();
+    public EUDataGridResult selectPageTechnology(int page, int rows) {
+        //分页处理
+        PageHelper.startPage(page, rows);
+        List<Technology> list = technologyMapper.selectAll();
+        //创建一个返回值对象
+        EUDataGridResult result = new EUDataGridResult();
+        result.setRows(list);
+        //取记录总条数
+        PageInfo<Technology> pageInfo = new PageInfo<>(list);
+        result.setTotal(list.size());
+        return result;
     }
 }

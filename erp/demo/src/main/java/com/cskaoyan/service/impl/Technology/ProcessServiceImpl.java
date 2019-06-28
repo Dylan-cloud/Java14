@@ -1,8 +1,12 @@
 package com.cskaoyan.service.Impl.Technology;
 
+import com.cskaoyan.bean.Technology.Technology;
 import com.cskaoyan.mapper.Technology.ProcessMapper;
 import com.cskaoyan.bean.Technology.Process;
 import com.cskaoyan.service.Technology.ProcessService;
+import com.cskaoyan.util.EUDataGridResult;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,7 +50,16 @@ public class ProcessServiceImpl implements ProcessService {
     }
 
     @Override
-    public List<Process> selectAll() {
-        return processMapper.selectAll();
+    public EUDataGridResult selectPageTechnology(int page, int rows) {
+        PageHelper.startPage(page, rows);
+        List<Process> list = processMapper.selectAll();
+        //创建一个返回值对象
+        EUDataGridResult result = new EUDataGridResult();
+        result.setRows(list);
+        //取记录总条数
+        PageInfo<Process> pageInfo = new PageInfo<>(list);
+        result.setTotal(list.size());
+        return result;
     }
+
 }

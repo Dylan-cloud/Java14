@@ -5,6 +5,7 @@ import com.cskaoyan.bean.Technology.Process;
 import java.util.List;
 
 public interface ProcessMapper {
+
     int deleteByPrimaryKey(String processId);
 
     int insert(Process record);

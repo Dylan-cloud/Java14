@@ -1,6 +1,7 @@
 package com.cskaoyan.service.Technology;
 
 import com.cskaoyan.bean.Technology.Process;
+import com.cskaoyan.util.EUDataGridResult;
 
 import java.util.List;
 
@@ -18,5 +19,5 @@ public interface ProcessService {
 
     int updateByPrimaryKey(Process record);
 
-    List<Process> selectAll();
+    EUDataGridResult selectPageTechnology(int page, int rows);
 }

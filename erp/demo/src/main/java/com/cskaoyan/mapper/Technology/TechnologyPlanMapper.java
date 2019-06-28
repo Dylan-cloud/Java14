@@ -13,8 +13,6 @@ public interface TechnologyPlanMapper {
 
     TechnologyPlan selectByPrimaryKey(String technologyPlanId);
 
-    List<TechnologyPlan> selectByName(String searchValue);
-
     int updateByPrimaryKeySelective(TechnologyPlan record);
 
     int updateByPrimaryKey(TechnologyPlan record);

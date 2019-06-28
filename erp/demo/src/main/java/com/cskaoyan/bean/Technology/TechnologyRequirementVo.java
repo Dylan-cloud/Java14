@@ -1,8 +1,7 @@
 package com.cskaoyan.bean.Technology;
 
-public class TechnologyPlanVo extends TechnologyPlan{
-
-    public String technologyName;
+public class TechnologyRequirementVo extends TechnologyRequirement {
+    private String technologyName;
 
     public String getTechnologyName() {
         return technologyName;

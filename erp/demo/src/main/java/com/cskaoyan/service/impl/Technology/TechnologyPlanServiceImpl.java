@@ -1,8 +1,12 @@
 package com.cskaoyan.service.Impl.Technology;
 
+import com.cskaoyan.bean.Technology.Technology;
 import com.cskaoyan.bean.Technology.TechnologyPlan;
 import com.cskaoyan.mapper.Technology.TechnologyPlanMapper;
 import com.cskaoyan.service.Technology.TechnologyPlanService;
+import com.cskaoyan.util.EUDataGridResult;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,12 +49,16 @@ public class TechnologyPlanServiceImpl implements TechnologyPlanService {
     }
 
     @Override
-    public List<TechnologyPlan> selectAll() {
-        return technologyPlanMapper.selectAll();
-    }
-
-    @Override
-    public List<TechnologyPlan> selectByName(String searchValue) {
-        return technologyPlanMapper.selectByName(searchValue);
+    public EUDataGridResult selectPageTechnology(int page, int rows) {
+        //分页处理
+        PageHelper.startPage(page, rows);
+        List<TechnologyPlan> list = technologyPlanMapper.selectAll();
+        //创建一个返回值对象
+        EUDataGridResult result = new EUDataGridResult();
+        result.setRows(list);
+        //取记录总条数
+        PageInfo<TechnologyPlan> pageInfo = new PageInfo<>(list);
+        result.setTotal(list.size());
+        return result;
     }
 }
