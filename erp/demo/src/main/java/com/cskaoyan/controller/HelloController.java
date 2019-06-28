@@ -21,6 +21,13 @@ public class HelloController {
     sysPermissionList.add("custom:add");
     sysPermissionList.add("custom:edit");
     sysPermissionList.add("custom:delete");
+    sysPermissionList.add("product:add");
+    sysPermissionList.add("product:edit");
+    sysPermissionList.add("product:delete");
+    sysPermissionList.add("order:add");
+    sysPermissionList.add("order:edit");
+    sysPermissionList.add("order:delete");
+
     request.getSession().setAttribute("sysPermissionList",sysPermissionList);
     return "home";
 }
