@@ -37,6 +37,14 @@
     </where>
   </select>
 
+  <select id="selectTechnologyPlanVo" resultMap="AddResultMap">
+    select * from technology_plan p LEFT JOIN technology t ON p.technology_id =t.technology_id where p.technology_plan_id=#{technologyPlanId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectTPVByTechnologyName" resultMap="AddResultMap">
+    select * from technology_plan p LEFT JOIN technology t ON p.technology_id =t.technology_id where t.technology_name=#{searchValue}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from technology_plan
     where technology_plan_id = #{technologyPlanId,jdbcType=VARCHAR}

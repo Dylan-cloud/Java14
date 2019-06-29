@@ -20,4 +20,8 @@ public interface TechnologyService {
     int updateByPrimaryKey(Technology record);
 
     EUDataGridResult selectPageTechnology(int page, int rows);
+
+    List<Technology> selectAll();
+
+    List<Technology> selectByTechnologyName(String searchValue);
 }

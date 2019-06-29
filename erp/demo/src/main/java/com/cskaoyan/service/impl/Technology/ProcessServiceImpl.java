@@ -1,8 +1,9 @@
 package com.cskaoyan.service.Impl.Technology;
 
-import com.cskaoyan.bean.Technology.Technology;
+import com.cskaoyan.bean.Technology.TechnologyPlan;
 import com.cskaoyan.mapper.Technology.ProcessMapper;
 import com.cskaoyan.bean.Technology.Process;
+import com.cskaoyan.mapper.Technology.TechnologyPlanMapper;
 import com.cskaoyan.service.Technology.ProcessService;
 import com.cskaoyan.util.EUDataGridResult;
 import com.github.pagehelper.PageHelper;
@@ -18,6 +19,8 @@ public class ProcessServiceImpl implements ProcessService {
 
     @Autowired
     ProcessMapper processMapper;
+    @Autowired
+    TechnologyPlanMapper technologyPlanMapper;
 
     @Override
     public int deleteByPrimaryKey(String processId) {
@@ -60,6 +63,22 @@ public class ProcessServiceImpl implements ProcessService {
         PageInfo<Process> pageInfo = new PageInfo<>(list);
         result.setTotal(list.size());
         return result;
+    }
+
+    @Override
+    public List<TechnologyPlan> findAll() {
+        List<TechnologyPlan> list = technologyPlanMapper.selectAll();
+        return list;
+    }
+
+    @Override
+    public Process selectProcessById(String searchValue) {
+        return processMapper.selectProcessById(searchValue);
+    }
+
+    @Override
+    public List<Process> selectProcessByTechnologyId(String searchValue) {
+        return processMapper.selectProcessByTechnologyId(searchValue);
     }
 
 }

@@ -1,6 +1,7 @@
 package com.cskaoyan.mapper.Technology;
 
 import com.cskaoyan.bean.Technology.TechnologyRequirement;
+import com.cskaoyan.bean.Technology.TechnologyRequirementVo;
 
 import java.util.List;
 
@@ -18,4 +19,8 @@ public interface TechnologyRequirementMapper {
     int updateByPrimaryKey(TechnologyRequirement record);
 
     List<TechnologyRequirement> selectAll();
+
+    TechnologyRequirementVo selectTRVByPrimaryKey(String searchValue);
+
+    List<TechnologyRequirementVo> selectTRVByTechnologyName(String searchValue);
 }

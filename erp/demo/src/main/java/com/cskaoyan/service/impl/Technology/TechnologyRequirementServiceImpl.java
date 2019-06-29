@@ -1,6 +1,7 @@
 package com.cskaoyan.service.Impl.Technology;
 
 import com.cskaoyan.bean.Technology.TechnologyRequirement;
+import com.cskaoyan.bean.Technology.TechnologyRequirementVo;
 import com.cskaoyan.mapper.Technology.TechnologyRequirementMapper;
 import com.cskaoyan.service.Technology.TechnologyRequirementService;
 import com.cskaoyan.util.EUDataGridResult;
@@ -57,5 +58,15 @@ public class TechnologyRequirementServiceImpl implements TechnologyRequirementSe
         PageInfo<TechnologyRequirement> pageInfo = new PageInfo<>(list);
         result.setTotal(list.size());
         return result;
+    }
+
+    @Override
+    public TechnologyRequirementVo selectTRVByPrimaryKey(String searchValue) {
+        return technologyRequirementMapper.selectTRVByPrimaryKey(searchValue);
+    }
+
+    @Override
+    public List<TechnologyRequirementVo> selectTRVByTechnologyName(String searchValue) {
+        return technologyRequirementMapper.selectTRVByTechnologyName(searchValue);
     }
 }

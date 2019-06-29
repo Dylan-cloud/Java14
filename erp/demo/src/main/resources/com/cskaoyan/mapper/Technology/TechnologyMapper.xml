@@ -23,6 +23,15 @@
     where technology_id = #{technologyId,jdbcType=VARCHAR}
   </select>
 
+  <select id="selectByTechnologyName" resultMap="BaseResultMap">
+    select * from technology
+    <where>
+      <if test="_parameter!= null">
+        technology_name like CONCAT('%',#{technologyName,jdbcType=VARCHAR},'%');
+      </if>
+    </where>
+  </select>
+
   <select id="selectAll" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />

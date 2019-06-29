@@ -60,4 +60,14 @@ public class TechnologyServiceImpl implements TechnologyService {
         result.setTotal(list.size());
         return result;
     }
+
+    @Override
+    public List<Technology> selectAll() {
+        return technologyMapper.selectAll();
+    }
+
+    @Override
+    public List<Technology> selectByTechnologyName(String searchValue) {
+        return technologyMapper.selectByTechnologyName(searchValue);
+    }
 }

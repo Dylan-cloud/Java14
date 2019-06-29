@@ -3,15 +3,11 @@ package com.cskaoyan.controller.Technology;
 import com.cskaoyan.bean.Technology.Technology;
 import com.cskaoyan.service.Impl.Technology.TechnologyServiceImpl;
 import com.cskaoyan.util.EUDataGridResult;
-import com.github.pagehelper.Page;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,6 +24,25 @@ public class TechnologyController {
     @RequestMapping(value = {"/add","/add_judge"})
     public String addJudge(){
         return "technology_add";
+    }
+
+    @RequestMapping(value = {"/edit_judge","/edit"})
+    public String edit(){
+        return "technology_edit";
+    }
+
+    @RequestMapping("/find")
+    public String findTechnology(){
+        return "technology_list";
+    }
+
+    @RequestMapping("/insert")
+    @ResponseBody
+    public Map technologyAddForm(Technology technology){
+        Map<String,Object> map = new HashMap<>();
+        int insert = technologyService.insert(technology);
+        map.put("status",200);
+        return map;
     }
 
     @RequestMapping("/delete_judge")
@@ -49,27 +64,6 @@ public class TechnologyController {
         return map;
     }
 
-    @RequestMapping("/edit_judge")
-    public String edit_judge(){
-        return "technology_list";
-    }
-
-    @RequestMapping("/edit")
-    public String edit(){
-        return "technology_edit";
-    }
-
-/*//    @RequestMapping("/find")
-//    public ModelAndView findTechnology(){
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.setViewName("technology_list");
-//        return modelAndView;
-//    }*/
-    @RequestMapping("/find")
-    public String findTechnology(){
-        return "technology_list";
-    }
-
     @RequestMapping("/update_all")
     @ResponseBody
     public Map editTechnology(Technology technology){
@@ -79,11 +73,11 @@ public class TechnologyController {
         return map;
     }
 
-/*    @RequestMapping("/get_data")
+    @RequestMapping("/get_data")
     @ResponseBody
-    public List<Technology> getDate(){
+    public List<Technology> getTechnology(){
         return technologyService.selectAll();
-    }*/
+    }
 
     @RequestMapping("/get/{id}")
     @ResponseBody
@@ -91,18 +85,6 @@ public class TechnologyController {
         System.out.println(id);
         Technology technology=technologyService.selectByPrimaryKey(id);
         return technology;
-    }
-    /**
-     * 增加
-     * @param technology
-     */
-    @RequestMapping("/insert")
-    @ResponseBody
-    public Map technologyAddForm(Technology technology){
-        Map<String,Object> map = new HashMap<>();
-        int insert = technologyService.insert(technology);
-        map.put("status",200);
-        return map;
     }
 
     @RequestMapping("/list")
@@ -112,22 +94,6 @@ public class TechnologyController {
         return result;
     }
 
-/*    public Map findTechnologys(Integer page,Integer rows){
-        Map<String,Object> map=new HashMap<>();
-        Page page1= PageHelper.startPage(page,rows);
-        //获取工艺列表
-        List<Technology> list=technologyService.selectAll();
-
-        PageInfo<Technology> pageInfo=new PageInfo<>(list);
-        map.put("total",pageInfo.getTotal());
-        map.put("rows",list);
-        return map;
-    }*/
-    /**
-     *
-     * @param searchValue
-     * @return
-     */
     @RequestMapping("/search_technology_by_technologyId")
     @ResponseBody
     public Map selectTechnologyById(String searchValue){
@@ -143,21 +109,16 @@ public class TechnologyController {
         map.put("rows",list);
         return map;
     }
-    /**
-     *
-     * @param searchValue
-     * @return
-     */
-/*    @RequestMapping("/search_technology_by_technologyName")
+
+    @RequestMapping("/search_technology_by_technologyName")
     @ResponseBody
     public Map selectTechnologyByName(String searchValue){
-        List<Technology> list=technologyService.selectByName(searchValue);
+        List<Technology> list=technologyService.selectByTechnologyName(searchValue);
         Map<String,Object> map=new HashMap<>();
-
         Integer total=list.size();
         map.put("total",total);
         map.put("rows",list);
         return map;
-    }*/
+    }
 
 }

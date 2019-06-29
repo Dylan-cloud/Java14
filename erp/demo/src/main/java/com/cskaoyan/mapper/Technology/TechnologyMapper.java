@@ -18,4 +18,6 @@ public interface TechnologyMapper {
     int updateByPrimaryKey(Technology record);
 
     List<Technology> selectAll();
+
+    List<Technology> selectByTechnologyName(String searchValue);
 }

@@ -1,7 +1,7 @@
 package com.cskaoyan.service.Impl.Technology;
 
-import com.cskaoyan.bean.Technology.Technology;
 import com.cskaoyan.bean.Technology.TechnologyPlan;
+import com.cskaoyan.bean.Technology.TechnologyPlanVo;
 import com.cskaoyan.mapper.Technology.TechnologyPlanMapper;
 import com.cskaoyan.service.Technology.TechnologyPlanService;
 import com.cskaoyan.util.EUDataGridResult;
@@ -60,5 +60,26 @@ public class TechnologyPlanServiceImpl implements TechnologyPlanService {
         PageInfo<TechnologyPlan> pageInfo = new PageInfo<>(list);
         result.setTotal(list.size());
         return result;
+    }
+
+    @Override
+    public TechnologyPlanVo selectTechnologyPlanVo(String technologyPlanId) {
+        TechnologyPlanVo technologyPlanVo = technologyPlanMapper.selectTechnologyPlanVo(technologyPlanId);
+        return technologyPlanVo;
+    }
+
+    @Override
+    public List<TechnologyPlan> selectAll() {
+        return technologyPlanMapper.selectAll();
+    }
+
+    @Override
+    public List<TechnologyPlanVo> selectTPVByTechnologyName(String searchValue) {
+        return technologyPlanMapper.selectTPVByTechnologyName(searchValue);
+    }
+
+    @Override
+    public TechnologyPlanVo selectTPVByPrimaryKey(String searchValue) {
+        return technologyPlanMapper.selectTechnologyPlanVo(searchValue);
     }
 }

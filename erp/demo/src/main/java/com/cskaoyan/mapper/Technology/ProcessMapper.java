@@ -19,4 +19,8 @@ public interface ProcessMapper {
     int updateByPrimaryKey(Process record);
 
     List<Process> selectAll();
+
+    Process selectProcessById(String searchValue);
+
+    List<Process> selectProcessByTechnologyId(String searchValue);
 }

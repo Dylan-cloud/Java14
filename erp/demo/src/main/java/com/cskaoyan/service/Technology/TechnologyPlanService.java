@@ -1,7 +1,10 @@
 package com.cskaoyan.service.Technology;
 
 import com.cskaoyan.bean.Technology.TechnologyPlan;
+import com.cskaoyan.bean.Technology.TechnologyPlanVo;
 import com.cskaoyan.util.EUDataGridResult;
+
+import java.util.List;
 
 public interface TechnologyPlanService {
 
@@ -18,4 +21,12 @@ public interface TechnologyPlanService {
     int updateByPrimaryKey(TechnologyPlan record);
 
     EUDataGridResult selectPageTechnology(int page, int rows);
+
+    TechnologyPlanVo selectTechnologyPlanVo(String technologyPlanId);
+
+    List<TechnologyPlan> selectAll();
+
+    List<TechnologyPlanVo> selectTPVByTechnologyName(String searchValue);
+
+    TechnologyPlanVo selectTPVByPrimaryKey(String searchValue);
 }
