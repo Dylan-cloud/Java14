@@ -1,6 +1,6 @@
 package com.cskaoyan.bean.Material;
 
-import java.util.Date;
+import com.sun.corba.se.spi.orbutil.threadpool.Work;
 
 public class MaterialConsume {
     private String consumeId;
@@ -11,13 +11,17 @@ public class MaterialConsume {
 
     private Integer consumeAmount;
 
-    private Date consumeDate;
+    private String consumeDate;
 
     private String sender;
 
     private String receiver;
 
     private String note;
+
+    private Material material;
+
+    private Work work;
 
     public String getConsumeId() {
         return consumeId;
@@ -51,11 +55,11 @@ public class MaterialConsume {
         this.consumeAmount = consumeAmount;
     }
 
-    public Date getConsumeDate() {
+    public String getConsumeDate() {
         return consumeDate;
     }
 
-    public void setConsumeDate(Date consumeDate) {
+    public void setConsumeDate(String consumeDate) {
         this.consumeDate = consumeDate;
     }
 
@@ -81,5 +85,21 @@ public class MaterialConsume {
 
     public void setNote(String note) {
         this.note = note == null ? null : note.trim();
+    }
+
+    public Material getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(Material material) {
+        this.material = material;
+    }
+
+    public Work getWork() {
+        return work;
+    }
+
+    public void setWork(Work work) {
+        this.work = work;
     }
 }

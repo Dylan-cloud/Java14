@@ -1,7 +1,5 @@
 package com.cskaoyan.bean.Material;
 
-import java.util.Date;
-
 public class MaterialReceive {
     private String receiveId;
 
@@ -9,13 +7,15 @@ public class MaterialReceive {
 
     private Integer amount;
 
-    private Date receiveDate;
+    private String receiveDate;
 
     private String sender;
 
     private String receiver;
 
     private String note;
+
+    private Material material;
 
     public String getReceiveId() {
         return receiveId;
@@ -41,11 +41,11 @@ public class MaterialReceive {
         this.amount = amount;
     }
 
-    public Date getReceiveDate() {
+    public String getReceiveDate() {
         return receiveDate;
     }
 
-    public void setReceiveDate(Date receiveDate) {
+    public void setReceiveDate(String receiveDate) {
         this.receiveDate = receiveDate;
     }
 
@@ -72,4 +72,13 @@ public class MaterialReceive {
     public void setNote(String note) {
         this.note = note == null ? null : note.trim();
     }
+
+    public Material getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(Material material) {
+        this.material = material;
+    }
+
 }
