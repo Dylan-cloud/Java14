@@ -4,6 +4,7 @@ import com.cskaoyan.bean.Data;
 import com.cskaoyan.bean.Page;
 
 import com.cskaoyan.bean.QueryStatus;
+import com.cskaoyan.bean.VO.COrderVO;
 import com.cskaoyan.bean.plan.COrder;
 import com.cskaoyan.service.plan.COrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -36,6 +38,12 @@ public class COrderController {
     @ResponseBody
     public Page order(int page, int rows) {
         return cOrderService.findOrder(page, rows);
+    }
+
+    @RequestMapping("/order/get_data")
+    @ResponseBody
+    public List<COrderVO> find(){
+        return cOrderService.find();
     }
 
     @RequestMapping("/order/find")

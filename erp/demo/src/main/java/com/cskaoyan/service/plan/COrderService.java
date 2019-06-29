@@ -2,7 +2,10 @@ package com.cskaoyan.service.plan;
 
 import com.cskaoyan.bean.Page;
 import com.cskaoyan.bean.QueryStatus;
+import com.cskaoyan.bean.VO.COrderVO;
 import com.cskaoyan.bean.plan.COrder;
+
+import java.util.List;
 
 /**
  * @Author: TXJ
@@ -25,4 +28,6 @@ public interface COrderService {
     Page searchOrderByPro(String searchValue, int page, int rows);
 
     QueryStatus deleteBatchOrder(String[] ids);
+
+    List<COrderVO> find();
 }

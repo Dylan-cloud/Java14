@@ -8,6 +8,42 @@
     <result column="task_quantity" jdbcType="INTEGER" property="taskQuantity" />
     <result column="working_hours" jdbcType="DECIMAL" property="workingHours" />
   </resultMap>
+    <select id="find" resultMap="BaseResultMap">
+		SELECT * FROM task
+	</select>
+  <select id="searchTaskByTaskId" parameterType="string" resultMap="BaseResultMap">
+		SELECT
+			*
+		FROM
+			task
+		WHERE
+			task_id LIKE CONCAT(
+				'%',
+				#{taskId},'%' )
+	</select>
+
+  <select id="searchTaskByTaskWorkId" parameterType="string" resultMap="BaseResultMap">
+		SELECT
+			*
+		FROM
+			task
+		WHERE
+			work_id LIKE CONCAT(
+				'%',
+				#{workId},'%' )
+	</select>
+
+  <select id="searchTaskByTaskManufactureSn" parameterType="string" resultMap="BaseResultMap">
+		SELECT
+			*
+		FROM
+			task
+		WHERE
+			manufacture_sn LIKE CONCAT(
+				'%',
+				#{manufactureSn},'%' )
+	</select>
+
   <sql id="Base_Column_List">
     task_id, manufacture_sn, work_id, task_quantity, working_hours
   </sql>

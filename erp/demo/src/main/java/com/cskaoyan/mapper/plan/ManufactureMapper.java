@@ -1,6 +1,9 @@
 package com.cskaoyan.mapper.plan;
 
+import com.cskaoyan.bean.VO.ManufactureVO;
 import com.cskaoyan.bean.plan.Manufacture;
+
+import java.util.List;
 
 public interface ManufactureMapper {
     int deleteByPrimaryKey(String manufactureSn);
@@ -9,9 +12,14 @@ public interface ManufactureMapper {
 
     int insertSelective(Manufacture record);
 
-    Manufacture selectByPrimaryKey(String manufactureSn);
+    ManufactureVO selectByPrimaryKey(String manufactureSn);
 
     int updateByPrimaryKeySelective(Manufacture record);
 
     int updateByPrimaryKey(Manufacture record);
+
+    List<ManufactureVO>  find();
+    List<ManufactureVO> searchManufactureByManufactureSn(String manufactureSn);
+    List<ManufactureVO> searchManufactureByManufactureOrderId(String manufactureOrderId);
+    List<ManufactureVO> searchManufactureByManufactureTechnologyName(String technologyName);
 }

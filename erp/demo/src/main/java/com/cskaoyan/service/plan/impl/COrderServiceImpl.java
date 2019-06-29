@@ -124,4 +124,9 @@ public class COrderServiceImpl implements COrderService {
         page1.setTotal(pageInfo.getTotal());
         return page1;
     }
+
+    @Override
+    public List<COrderVO> find() {
+        return cOrderMapper.find();
+    }
 }

@@ -27,7 +27,15 @@ public class HelloController {
     sysPermissionList.add("order:add");
     sysPermissionList.add("order:edit");
     sysPermissionList.add("order:delete");
-
+    sysPermissionList.add("work:add");
+    sysPermissionList.add("work:edit");
+    sysPermissionList.add("work:delete");
+    sysPermissionList.add("manufacture:add");
+    sysPermissionList.add("manufacture:edit");
+    sysPermissionList.add("manufacture:delete");
+    sysPermissionList.add("task:add");
+    sysPermissionList.add("task:edit");
+    sysPermissionList.add("task:delete");
     request.getSession().setAttribute("sysPermissionList",sysPermissionList);
     return "home";
 }
