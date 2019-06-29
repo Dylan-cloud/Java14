@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.az.mapper.UnqualifyApplyMapper">
+
+    <!--unqualify_apply.unqualify_apply_id,
+    unqualify_apply.product_id,
+    unqualify_apply.unqualify_item,
+    unqualify_apply.unqualify_count,
+    unqualify_apply.assembly_date,
+    unqualify_apply.emp_id,
+    unqualify_apply.apply_date,
+    unqualify_apply.note,
+    product.product_name,
+    employee.emp_name-->
+
+    <!--	private String unqualifyApplyId;
+        private String productId;
+        private String unqualifyItem;
+        private INTEGER unqualifyCount;
+        private Date assemblyDate;
+        private String empId;
+        private Date applyDate;
+        private String note;
+        private String empName;
+        private String productName;-->
+
+    <resultMap id="selectmap" type="cn.az.bean.UnqualifyApply">
+        <id column="unqualify_apply_id" jdbcType="VARCHAR" property="unqualifyApplyId"/>
+        <result column="product_id" jdbcType="VARCHAR" property="productId"/>
+        <result column="unqualify_item" jdbcType="VARCHAR" property="unqualifyItem"/>
+        <result column="unqualify_count" jdbcType="INTEGER" property="unqualifyCount"/>
+        <result column="assembly_date" jdbcType="TIMESTAMP" property="assemblyDate"/>
+        <result column="emp_id" jdbcType="VARCHAR" property="empId"/>
+        <result column="apply_date" jdbcType="TIMESTAMP" property="applyDate"/>
+        <result column="note" jdbcType="VARCHAR" property="note"/>
+        <result column="product_name" jdbcType="VARCHAR" property="productName"/>
+        <result column="emp_name" jdbcType="VARCHAR" property="empName"/>
+    </resultMap>
+
+
+    <!--新增-->
+    <insert id="insert" parameterType="cn.az.bean.UnqualifyApply">
+			 insert into  unqualify_apply
+		  values (#{unqualifyApplyId},#{productId},#{unqualifyItem},#{unqualifyCount},
+			#{assemblyDate},#{empId},#{applyDate},#{note}
+	</insert>
+
+
+    <!--修改-->
+    <update id="updateAll" parameterType="cn.az.bean.UnqualifyApply">
+			update unqualify_apply set
+					unqualify_apply_id=#{unqualifyApplyId},
+                    product_id=#{productId},
+                    unqualify_item=#{unqualifyItem},
+                    unqualify_count=#{unqualifyCount},
+                    assembly_date=#{assemblyDate},
+                    emp_id=#{empId},
+                    apply_date=#{applyDate},
+                    note=#{note}
+			where unqualify_apply_id= #{unqualifyApplyId}
+	</update>
+
+    <!--修改note-->
+    <update id="updateOne" parameterType="cn.az.bean.UnqualifyApply">
+			update unqualify_apply set
+				note=#{note}
+			where unqualify_apply_id= #{unqualifyApplyId}
+	</update>
+
+    <!--删除
+    <delete id="deleteBatch" parameterType="string">
+        delete from final_count_check where f_count_check_id= #{ids}
+    </delete>-->
+    <!--删除-->
+    <delete id="deleteBatch" parameterType="string">
+        delete from unqualify_apply where unqualify_apply_id in
+        <foreach collection="array" separator="," item="ids" open="(" close=")">
+            #{ids}
+        </foreach>
+
+    </delete>
+
+    <!--查询-->
+    <select id="selectAll" resultMap="selectmap">
+SELECT
+unqualify_apply.unqualify_apply_id,
+unqualify_apply.product_id,
+unqualify_apply.unqualify_item,
+unqualify_apply.unqualify_count,
+unqualify_apply.assembly_date,
+unqualify_apply.emp_id,
+unqualify_apply.apply_date,
+unqualify_apply.note,
+product.product_id,
+product.product_name,
+employee.emp_id,
+employee.emp_name
+FROM
+unqualify_apply
+INNER JOIN product ON unqualify_apply.product_id = product.product_id ,
+employee
+where employee.emp_id=unqualify_apply.emp_id
+	</select>
+    <!--//查询id-->
+    <select id="selectById" parameterType="string" resultType="cn.az.bean.UnqualifyApply">
+		select * from unqualify_apply where unqualify_apply_id= #{ids}
+	</select>
+
+
+    <!--查询by value 多表1-->
+    <select id="selectRightOne" resultMap="selectmap">
+SELECT
+    unqualify_apply.unqualify_apply_id,
+    unqualify_apply.product_id,
+    unqualify_apply.unqualify_item,
+    unqualify_apply.unqualify_count,
+    unqualify_apply.assembly_date,
+    unqualify_apply.emp_id,
+    unqualify_apply.apply_date,
+    unqualify_apply.note,
+    product.product_id,
+    product.product_name,
+    employee.emp_id,
+    employee.emp_name
+FROM
+unqualify_apply
+INNER JOIN product ON unqualify_apply.product_id = product.product_id ,
+employee
+where employee.emp_id=unqualify_apply.emp_id
+
+and unqualify_apply.unqualify_apply_id like CONCAT('%', #{searchValueint}, '%')
+
+
+	</select>
+
+    <!--查询by value 多表2-->
+    <select id="selectRightTwo" resultMap="selectmap">
+SELECT
+    unqualify_apply.unqualify_apply_id,
+    unqualify_apply.product_id,
+    unqualify_apply.unqualify_item,
+    unqualify_apply.unqualify_count,
+    unqualify_apply.assembly_date,
+    unqualify_apply.emp_id,
+    unqualify_apply.apply_date,
+    unqualify_apply.note,
+    product.product_id,
+    product.product_name,
+    employee.emp_id,
+    employee.emp_name
+FROM
+unqualify_apply
+INNER JOIN product ON unqualify_apply.product_id = product.product_id ,
+employee
+where employee.emp_id=unqualify_apply.emp_id
+
+and product.product_name like CONCAT('%', #{searchValueint}, '%')
+	</select>
+
+
+</mapper>
