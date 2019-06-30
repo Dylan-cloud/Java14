@@ -1,86 +1,108 @@
 package com.cskaoyan.controller.People;
 
+import com.cskaoyan.bean.Page;
 import com.cskaoyan.bean.People.Department;
-import com.cskaoyan.bean.Tip;
+import com.cskaoyan.bean.QueryStatus;
+import com.cskaoyan.exception.DepartmentException;
 import com.cskaoyan.service.People.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
+
 @Controller
-@RequestMapping("department")
 public class DepartmentController {
+
     @Autowired
-    DepartmentService departmentService;
+    private DepartmentService departmentService;
+
+    Page resultVo = new Page();
+
+    @RequestMapping("/department/find")
+    public String findDepartment(){return "department_list"; }
 
 
-    @RequestMapping("*_judge")
+    @RequestMapping("/department/list")
     @ResponseBody
-    public String judge(){
-        return "";
+    public Page findAllDepartment(int page, int rows){
+
+
+        List<Department> departmentList = departmentService.findAllDepartment(page,rows);
+        int total = departmentService.findTotal();
+        resultVo.setRows(departmentList);
+        resultVo.setTotal(total);
+        return resultVo;
     }
 
+    @RequestMapping("/department/add_judge")
+    public String addDepartment(){
 
-    @RequestMapping("find")
-    public String find(){
-        return "department_list";
+        return "department_add";
     }
+    @RequestMapping("/department/add")
+    public String departmentAdd(){
 
-    @RequestMapping("list")
-    @ResponseBody
-    public List<Department> findAllManufacture(@RequestParam("page") Integer page, @RequestParam("rows") Integer rows){
-        List<Department> departmentList = departmentService.findAllDepartment(page, rows);
-        return departmentList;
-    }
-
-
-    //批量删除
-    @RequestMapping("delete_batch")
-    @ResponseBody
-    public Tip deletleBatchByIds(String[] ids){
-        boolean b = departmentService.deleteBatchDepartmentByIds(ids);
-        if(b){
-            return new Tip("200","删除成功。",null);
-        }
-        return new Tip("0","删除失败。",null);
-    }
-
-
-    //修改数据
-    @RequestMapping("edit")
-    public String edit(){
-        return "work_edit";
-    }
-
-    @RequestMapping("update_all")
-    @ResponseBody
-    public Tip updatedepartment(Department department){
-        boolean b = departmentService.updateDepartmentById(department);
-        if (b){
-            return new Tip("200","修改成功。",null);
-        }
-        return new Tip("0","修改失败。",null);
-    }
-
-    //新增一条数据
-    @RequestMapping("add")
-    public String add(){
         return "department_add";
     }
 
-    @RequestMapping("insert")
+    @RequestMapping("department/insert")
     @ResponseBody
-    public Tip insert(Department department){
-
-        boolean b = departmentService.insertDepartment(department);
-        if (b){
-            return new Tip("200","增加成功。",null);
-        }
-        return new Tip("0","添加失败。",null);
+    public QueryStatus departmentInsert(Department department){
+        return departmentService.insertDepartment(department);
     }
 
+    @RequestMapping("/department/get_data")
+    @ResponseBody
+    public List<Department> getDepartmentData(){
+        return departmentService.getDepartmentData();
+    }
+
+    @RequestMapping("/department/edit_judge")
+    public String departmentEditJudge(){
+        return "department_edit";
+    }
+
+    @RequestMapping("/department/edit")
+    public String departmentEdit(){
+        return "department_edit";
+    }
+
+
+    @RequestMapping("department/update_all")
+    @ResponseBody
+    public QueryStatus departmentUpdateAll(Department department){
+        return departmentService.departmentUpdateAll(department);
+    }
+
+    @RequestMapping("department/delete_judge")
+    @ResponseBody
+    public QueryStatus departmentDeleteJudge(){
+        return new QueryStatus();
+    }
+
+    @RequestMapping("department/delete_batch")
+    @ResponseBody
+    public QueryStatus deleteBatch(String[] ids){
+        try {
+            return departmentService.departmentDeleteBatch(ids);
+        } catch (DepartmentException e) {
+            QueryStatus queryStatus = new QueryStatus();
+            queryStatus.setStatus(0);
+            queryStatus.setMsg(e.getMessage());
+            return queryStatus;
+        }
+    }
+
+    @RequestMapping("department/search_department_by_departmentId")
+    @ResponseBody
+    public Page searchDepartmentById(String id){
+        Page resultVo = new Page();
+        List<Department> departmentById = departmentService.searchDepartmentById(id);
+        resultVo.setTotal(1);
+        resultVo.setRows(departmentById);
+        return resultVo;
+    }
 }

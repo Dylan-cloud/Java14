@@ -1,17 +1,25 @@
 package com.cskaoyan.service.People;
 
+import com.cskaoyan.bean.Page;
+import com.cskaoyan.bean.People.Department;
 import com.cskaoyan.bean.People.Employee;
-
-import java.util.List;
+import com.cskaoyan.bean.QueryStatus;
+import com.cskaoyan.exception.EmployeeException;
 
 public interface EmployeeService {
 
-    List<Employee> findAllEmployee(Integer page, Integer rows);
+    Employee[] getEmployees();
 
-    boolean deleteBatchEmployeeByIds(String[] ids);
+    Employee selectEmployeeById(String deviceKeeperId);
 
-    boolean updateEmployeeById(Employee employee);
+    Page findAllEmployees(int page, int rows);
 
-    boolean insertEmployee(Employee employee);
+    Department getDepartmentData(String id);
+
+    QueryStatus employeeUpdateAll(Employee employee);
+
+    QueryStatus insertEmployee(Employee employee);
+
+    QueryStatus employeeDeleteBatch(String[] ids) throws EmployeeException;
 
 }

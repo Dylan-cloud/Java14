@@ -1,16 +1,24 @@
 package com.cskaoyan.service.People;
 
 import com.cskaoyan.bean.People.Department;
+import com.cskaoyan.bean.QueryStatus;
+import com.cskaoyan.exception.DepartmentException;
 
 import java.util.List;
 
 public interface DepartmentService {
 
-    boolean deleteBatchDepartmentByIds(String[] ids);
+    List<Department> findAllDepartment(int page, int rows);
 
-    List<Department> findAllDepartment(Integer page, Integer rows);
+    int findTotal();
 
-    boolean updateDepartmentById(Department department);
+    QueryStatus insertDepartment(Department department);
 
-    boolean insertDepartment(Department department);
+    List<Department> getDepartmentData();
+
+    QueryStatus departmentUpdateAll(Department department);
+
+    QueryStatus departmentDeleteBatch(String[] ids) throws DepartmentException;
+
+    List<Department> searchDepartmentById(String id);
 }

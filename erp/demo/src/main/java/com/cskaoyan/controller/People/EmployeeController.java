@@ -1,86 +1,105 @@
 package com.cskaoyan.controller.People;
 
+import com.cskaoyan.bean.Page;
+import com.cskaoyan.bean.People.Department;
 import com.cskaoyan.bean.People.Employee;
-import com.cskaoyan.bean.Tip;
+import com.cskaoyan.bean.QueryStatus;
+import com.cskaoyan.exception.EmployeeException;
 import com.cskaoyan.service.People.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
 
 @Controller
-@RequestMapping("employee")
 public class EmployeeController {
     @Autowired
-    EmployeeService employeeService;
+    private EmployeeService employeeService;
 
-    @RequestMapping("*_judge")
+    @RequestMapping("employee/get_data")
     @ResponseBody
-    public String judge(){
-        return "";
+    public Employee[] getEmployeeData(){
+        return employeeService.getEmployees();
     }
 
-
-    @RequestMapping("find")
-    public String find(){
+    @RequestMapping("employee/find")
+    public String findEmployee(){
         return "employee_list";
     }
 
-
-    @RequestMapping("list")
+    @RequestMapping("employee/list")
     @ResponseBody
-    public List<Employee> findAllManufacture(@RequestParam("page") Integer page, @RequestParam("rows") Integer rows){
-        List<Employee> employeeList = employeeService.findAllEmployee(page, rows);
-        return employeeList;
+    public Page findAllEmployees(int page, int rows){
+        return employeeService.findAllEmployees(page, rows);
     }
 
-
-    //批量删除
-    @RequestMapping("delete_batch")
+    @RequestMapping("department/get/{id}")
     @ResponseBody
-    public Tip deletleBatchByIds(String[] ids){
-        boolean b = employeeService.deleteBatchEmployeeByIds(ids);
-        if(b){
-            return new Tip("200","删除成功。",null);
-        }
-        return new Tip("0","删除失败。",null);
+    public Department getDepartmentData(@ModelAttribute("id") String id){
+        return employeeService.getDepartmentData(id);
     }
 
+    @RequestMapping("employee/add_judge")
+    public String addEmployee(){
 
-    //修改数据
-    @RequestMapping("edit")
-    public String edit(){
-        return "work_edit";
+        return "employee_add";
     }
+    @RequestMapping("employee/add")
+    public String employeeAdd(){
 
-    @RequestMapping("update_all")
-    @ResponseBody
-    public Tip updateEmployee(Employee employee){
-        boolean b = employeeService.updateEmployeeById(employee);
-        if (b){
-            return new Tip("200","修改成功。",null);
-        }
-        return new Tip("0","修改失败。",null);
-    }
-
-    //新增一条数据
-    @RequestMapping("add")
-    public String add(){
         return "employee_add";
     }
 
-    @RequestMapping("insert")
+    @RequestMapping("employee/insert")
     @ResponseBody
-    public Tip insert(Employee employee){
-
-        boolean b = employeeService.insertEmployee(employee);
-        if (b){
-            return new Tip("200","增加成功。",null);
-        }
-        return new Tip("0","添加失败。",null);
+    public QueryStatus employeeInsert(Employee employee){
+        return employeeService.insertEmployee(employee);
     }
 
+    @RequestMapping("employee/edit_judge")
+    public String employeeEditJudge(){
+        return "employee_edit";
+    }
+
+    @RequestMapping("employee/edit")
+    public String employeeEdit(){
+        return "employee_edit";
+    }
+
+
+    @RequestMapping("employee/update_all")
+    @ResponseBody
+    public QueryStatus employeeUpdateAll(Employee employee){
+        return employeeService.employeeUpdateAll(employee);
+    }
+
+    @RequestMapping("employee/delete_judge")
+    @ResponseBody
+    public QueryStatus employeeDeleteJudge(){
+        return new QueryStatus();
+    }
+
+    @RequestMapping("employee/delete_batch")
+    @ResponseBody
+    public QueryStatus deleteBatch(String[] ids){
+        try {
+            return employeeService.employeeDeleteBatch(ids);
+        } catch (EmployeeException e) {
+            QueryStatus queryStatus = new QueryStatus();
+            queryStatus.setStatus(0);
+            queryStatus.setMsg(e.getMessage());
+            return queryStatus;
+        }
+
+    }
+
+    @RequestMapping("/employee/get/{deviceKeeperId}")
+    @ResponseBody
+    public Employee selectEmployeeById(@PathVariable("deviceKeeperId")String deviceKeeperId){
+        Employee employee = employeeService.selectEmployeeById(deviceKeeperId);
+        return employee;
+    }
 }

@@ -66,8 +66,8 @@ public class ProcessServiceImpl implements ProcessService {
     }
 
     @Override
-    public List<TechnologyPlan> findAll() {
-        List<TechnologyPlan> list = technologyPlanMapper.selectAll();
+    public List<Process> findAll() {
+        List<Process> list = processMapper.selectAll();
         return list;
     }
 

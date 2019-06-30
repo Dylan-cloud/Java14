@@ -43,6 +43,14 @@ public class ProcessController {
         return result;
     }
 
+
+    @RequestMapping("/get_data")
+    @ResponseBody
+    public List<Process> getData(){
+        List<Process> list=processService.findAll();
+        return list;
+    }
+
     @RequestMapping("/insert")
     @ResponseBody
     public Map insert(Process process){
