@@ -1,7 +1,6 @@
 package com.cskaoyan.service.Technology;
 
 import com.cskaoyan.bean.Technology.Process;
-import com.cskaoyan.bean.Technology.TechnologyPlan;
 import com.cskaoyan.util.EUDataGridResult;
 
 import java.util.List;
@@ -22,7 +21,7 @@ public interface ProcessService {
 
     EUDataGridResult selectPageTechnology(int page, int rows);
 
-    List<TechnologyPlan> findAll();
+    List<Process> findAll();
 
     Process selectProcessById(String searchValue);
 
