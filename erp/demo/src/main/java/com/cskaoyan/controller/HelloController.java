@@ -36,6 +36,21 @@ public class HelloController {
     sysPermissionList.add("task:add");
     sysPermissionList.add("task:edit");
     sysPermissionList.add("task:delete");
+    sysPermissionList.add("device:add");
+    sysPermissionList.add("device:edit");
+    sysPermissionList.add("device:delete");
+    sysPermissionList.add("deviceType:add");
+    sysPermissionList.add("deviceType:edit");
+    sysPermissionList.add("deviceType:delete");
+    sysPermissionList.add("deviceFault:add");
+    sysPermissionList.add("deviceFault:edit");
+    sysPermissionList.add("deviceFault:delete");
+    sysPermissionList.add("deviceMaintain:add");
+    sysPermissionList.add("deviceMaintain:edit");
+    sysPermissionList.add("deviceMaintain:delete");
+    sysPermissionList.add("deviceCheck:add");
+    sysPermissionList.add("deviceCheck:edit");
+    sysPermissionList.add("deviceCheck:delete");
     request.getSession().setAttribute("sysPermissionList",sysPermissionList);
     return "home";
 }

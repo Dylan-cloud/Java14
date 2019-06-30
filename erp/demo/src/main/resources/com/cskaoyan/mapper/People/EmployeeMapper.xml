@@ -32,8 +32,21 @@
         where employee.emp_id=#{deviceKeeperId}
     </select>
     <select id="findAllEmployees" resultMap="baseMap">
-        SELECT d.emp_id,d.emp_name,d.sex,d.id_code,d.birthday,d.join_date,d.status,d.education,
-        d.degree,d.major,d.graduate_school,d.education_form,d.department_id,u.department_id AS departmentId,u.department_Name,u.note FROM
+        SELECT
+         d.emp_id,
+         d.emp_name,
+         d.sex,
+         d.id_code,
+         d.birthday,
+         d.join_date,
+         d.status,
+         d.education,
+        d.degree,
+        d.major,
+        d.graduate_school,
+        d.education_form,
+        d.department_id,
+        u.department_id AS departmentId,u.department_Name,u.note FROM
         employee d LEFT JOIN department u
         ON d.department_id = u.department_id
         limit #{offset} , #{rows}
