@@ -36,6 +36,12 @@ public class HelloController {
     sysPermissionList.add("task:add");
     sysPermissionList.add("task:edit");
     sysPermissionList.add("task:delete");
+    sysPermissionList.add("department:add");
+    sysPermissionList.add("department:edit");
+    sysPermissionList.add("department:delete");
+    sysPermissionList.add("employee:add");
+    sysPermissionList.add("employee:edit");
+    sysPermissionList.add("employee:delete");
     request.getSession().setAttribute("sysPermissionList",sysPermissionList);
     return "home";
 }
