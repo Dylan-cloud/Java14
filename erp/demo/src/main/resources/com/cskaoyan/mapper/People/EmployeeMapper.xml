@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cskaoyan.mapper.People.EmployeeMapper">
-<resultMap id="baseMap" type="employee">
+<resultMap id="baseMap" type="com.cskaoyan.bean.People.Employee">
     <result property="birthday" column="birthday"/>
     <result property="degree" column="degree"/>
     <result property="education" column="education"/>
@@ -16,7 +16,7 @@
     <result property="major" column="major"/>
     <result property="sex" column="sex"/>
     <result property="status" column="status"/>
-    <association property="department" javaType="department">
+    <association property="department" javaType="com.cskaoyan.bean.People.Department">
         <result property="departmentId" column="department_id"/>
         <result property="departmentName" column="department_name"/>
         <result property="note" column="note"/>
