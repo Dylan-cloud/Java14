@@ -58,7 +58,7 @@ public class HelloController {
     sysPermissionList.add("deviceCheck:edit");
     sysPermissionList.add("deviceCheck:delete");
     request.getSession().setAttribute("sysPermissionList",sysPermissionList);
-    return "home";
+    return "login";
 }
 
 

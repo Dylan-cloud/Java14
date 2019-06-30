@@ -26,13 +26,13 @@
 		<div class="header hide"> 大型生产管理ERP系统  </div>
 		<div class="content">
 			<div class="title hide">大型生产管理ERP系统 登录</div>
-			<form name="login" action="#" method="post">
+			<form name="login" action="/home" method="get">
 				<fieldset>
 				
 					<!--USERNAME -->
 					<div>
 						<div class="input">
-							<input class="input_all name" name="name" id="username" placeholder="用户名" type="text"
+							<input class="input_all name" name="username" id="username" placeholder="用户名" type="text"
 								   onFocus="this.className='input_all name_now';"
 								   onBlur="this.className='input_all name'" maxLength="24" />
 						</div>
@@ -78,14 +78,14 @@
 					</div>
 
 					<!-- LOGIN -->
-					<!-- 
+
 						<div class="enter">
 							<input class="button hide" name="submit" type="submit" value="登录" />
-						</div> 
-					-->
-					<div>
-						<a href="#" id="login" class="button hide">登录</a>
-					</div>
+						</div>
+
+					<%--<div>--%>
+						<%--<a href="#" id="login" class="button hide">登录</a>--%>
+					<%--</div>--%>
 					
 				</fieldset>
 			</form>

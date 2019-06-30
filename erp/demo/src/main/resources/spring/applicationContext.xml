@@ -14,9 +14,9 @@
 </context:component-scan>
 <bean id="myds" class="com.alibaba.druid.pool.DruidDataSource">
     <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-    <property name="url" value="jdbc:mysql://localhost:3306/production_ssm?characterEncoding=utf8"/>
+    <property name="url" value="jdbc:mysql://localhost:3306/production_ssm?serverTimezone=GMT"/>
     <property name="username" value="root"/>
-    <property name="password" value="12345"/>
+    <property name="password" value="123456"/>
 
 </bean>
     <!--在spring中整合mybatis的配置-->

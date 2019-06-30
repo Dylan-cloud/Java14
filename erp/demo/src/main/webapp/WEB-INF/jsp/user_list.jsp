@@ -20,23 +20,23 @@
 
 <div  id="toolbar_user" style=" height: 22px; padding: 3px 11px; background: #fafafa;">  
 	
-	<c:forEach items="${sessionScope.sysPermissionList}" var="per" >
-		<c:if test="${per=='user:add' }" >
+	<%--<c:forEach items="${sessionScope.sysPermissionList}" var="per" >--%>
+		<%--<c:if test="${per=='user:add' }" >--%>
 		    <div style="float: left;">  
 		        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-add" onclick="user_add()">新增</a>  
 		    </div>  
-		</c:if>
-		<c:if test="${per=='user:edit' }" >
+		<%--</c:if>--%>
+		<%--<c:if test="${per=='user:edit' }" >--%>
 		    <div style="float: left;">  
 		        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-edit" onclick="user_edit()">编辑</a>  
 		    </div>  
-		</c:if>
-		<c:if test="${per=='user:delete' }" >
+		<%--</c:if>--%>
+		<%--<c:if test="${per=='user:delete' }" >--%>
 		    <div style="float: left;">  
 		        <a href="#" class="easyui-linkbutton" plain="true" icon="icon-cancel" onclick="user_delete()">删除</a>  
 		    </div>  
-		</c:if>
-	</c:forEach>
+		<%--</c:if>--%>
+	<%--</c:forEach>--%>
 	
 	<div class="datagrid-btn-separator"></div>  
 	

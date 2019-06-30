@@ -157,7 +157,7 @@
 			</ul>
 		</div>
 		
-		<c:if test="${activeUser.rolename == '超级管理员' }">
+		<%--<c:if test="${activeUser.rolename == '超级管理员' }">--%>
 			<div title="系统管理" style="padding:10px;">
 	
 				<ul id="sysManager" class="easyui-tree"
@@ -166,13 +166,15 @@
 						<ul>
 							<li data-options="attributes:{'url':'user/find'}">用户管理</li>
 						</ul>
+						<c:if test="${activeUser.rolename == '超级管理员' }">
 						<ul>
 							<li data-options="attributes:{'url':'role/find'}">角色管理</li>
 						</ul>
+						</c:if>
 					</li>
 				</ul>
 			</div>
-		</c:if>
+		<%--</c:if>--%>
 	</div>
 
 	<!-- </div> -->
