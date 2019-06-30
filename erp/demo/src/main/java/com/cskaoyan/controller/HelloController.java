@@ -18,6 +18,12 @@ public class HelloController {
 @RequestMapping("hello")
     public String hello(HttpServletRequest request){
     List<String> sysPermissionList=new ArrayList<>();
+	sysPermissionList.add("department:add");
+    sysPermissionList.add("department:edit");
+    sysPermissionList.add("department:delete");
+    sysPermissionList.add("employee:add");
+    sysPermissionList.add("employee:edit");
+    sysPermissionList.add("employee:delete");
     sysPermissionList.add("custom:add");
     sysPermissionList.add("custom:edit");
     sysPermissionList.add("custom:delete");
@@ -51,24 +57,6 @@ public class HelloController {
     sysPermissionList.add("deviceCheck:add");
     sysPermissionList.add("deviceCheck:edit");
     sysPermissionList.add("deviceCheck:delete");
-    sysPermissionList.add("employee:add");
-    sysPermissionList.add("employee:edit");
-    sysPermissionList.add("employee:delete");
-    sysPermissionList.add("department:add");
-    sysPermissionList.add("department:edit");
-    sysPermissionList.add("department:delete");
-
-    sysPermissionList.add("material:add");
-    sysPermissionList.add("material:edit");
-    sysPermissionList.add("material:delete");
-
-    sysPermissionList.add("materialReceive:add");
-    sysPermissionList.add("materialReceive:edit");
-    sysPermissionList.add("materialReceive:delete");
-
-    sysPermissionList.add("materialConsume:add");
-    sysPermissionList.add("materialConsume:edit");
-    sysPermissionList.add("materialConsume:delete");
     request.getSession().setAttribute("sysPermissionList",sysPermissionList);
     return "home";
 }

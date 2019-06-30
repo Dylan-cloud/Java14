@@ -28,21 +28,8 @@
     </select>
 
     <select id="findAllEmployees" resultMap="baseMap">
-        SELECT
-         d.emp_id,
-         d.emp_name,
-         d.sex,
-         d.id_code,
-         d.birthday,
-         d.join_date,
-         d.status,
-         d.education,
-        d.degree,
-        d.major,
-        d.graduate_school,
-        d.education_form,
-        d.department_id,
-        u.department_id AS departmentId,u.department_Name,u.note FROM
+        SELECT d.emp_id,d.emp_name,d.sex,d.id_code,d.birthday,d.join_date,d.status,d.education,
+        d.degree,d.major,d.graduate_school,d.education_form,d.department_id,u.department_id AS departmentId,u.department_Name,u.note FROM
         employee d LEFT JOIN department u
         ON d.department_id = u.department_id
         limit #{offset} , #{rows}
@@ -78,20 +65,20 @@
     </delete>
 
     <select id="searchEmployeeByEmployeeId" resultMap="baseMap">
-        select birthday,degree,education,education_form,emp_id,emp_name,graduate_school,id_code,join_date,major,sex,status,department.department_id
+        select birthday,degree,education,education_form,emp_id,emp_name,graduate_school,id_code,join_date,major,sex,status,department.department_id,department.department_name,department.note
         from employee left join department on employee.department_id=department.department_id
-        where employee.emp_id=#{employeeId}
+        where employee.emp_id like CONCAT('%',#{employeeId},'%')
     </select>
 
     <select id="searchEmployeeByEmployeeName" resultMap="baseMap">
-        select birthday,degree,education,education_form,emp_id,emp_name,graduate_school,id_code,join_date,major,sex,status,department.department_id
+        select birthday,degree,education,education_form,emp_id,emp_name,graduate_school,id_code,join_date,major,sex,status,department.department_id,department.department_name,department.note
         from employee left join department on employee.department_id=department.department_id
-        where employee.emp_name=#{employeeName}
+        where employee.emp_name like CONCAT('%',#{employeeName},'%')
     </select>
 
     <select id="searchEmployeeByDepartmentName" resultMap="baseMap">
-       	select birthday,degree,education,education_form,emp_id,emp_name,graduate_school,id_code,join_date,major,sex,status,department.department_id
+       	select birthday,degree,education,education_form,emp_id,emp_name,graduate_school,id_code,join_date,major,sex,status,department.department_id,department.department_name,department.note
         from employee left join department on employee.department_id=department.department_id
-        where department.department_name=#{departmentName}
+        where department.department_name like CONCAT('%',#{departmentName},'%')
 	</select>
 </mapper>
