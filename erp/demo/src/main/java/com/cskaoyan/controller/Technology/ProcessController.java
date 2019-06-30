@@ -2,8 +2,8 @@ package com.cskaoyan.controller.Technology;
 
 import com.cskaoyan.bean.Technology.Process;
 import com.cskaoyan.bean.Technology.TechnologyPlanVo;
-import com.cskaoyan.service.Impl.Technology.ProcessServiceImpl;
-import com.cskaoyan.service.Impl.Technology.TechnologyPlanServiceImpl;
+import com.cskaoyan.service.impl.Technology.ProcessServiceImpl;
+import com.cskaoyan.service.impl.Technology.TechnologyPlanServiceImpl;
 import com.cskaoyan.util.EUDataGridResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

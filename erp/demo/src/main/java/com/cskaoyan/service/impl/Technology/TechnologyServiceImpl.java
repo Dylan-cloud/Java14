@@ -1,4 +1,4 @@
-package com.cskaoyan.service.Impl.Technology;
+package com.cskaoyan.service.impl.Technology;
 
 import com.cskaoyan.bean.Technology.Technology;
 import com.cskaoyan.mapper.Technology.TechnologyMapper;

@@ -1,7 +1,7 @@
 package com.cskaoyan.controller.Technology;
 
 import com.cskaoyan.bean.Technology.Technology;
-import com.cskaoyan.service.Impl.Technology.TechnologyServiceImpl;
+import com.cskaoyan.service.impl.Technology.TechnologyServiceImpl;
 import com.cskaoyan.util.EUDataGridResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
