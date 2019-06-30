@@ -1,10 +1,13 @@
 package com.cskaoyan.service.People.impl;
 
+import com.cskaoyan.bean.Page;
 import com.cskaoyan.bean.People.Department;
 import com.cskaoyan.bean.QueryStatus;
 import com.cskaoyan.exception.DepartmentException;
 import com.cskaoyan.mapper.People.DepartmentMapper;
 import com.cskaoyan.service.People.DepartmentService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -91,6 +94,28 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public List<Department> searchDepartmentById(String id) {
         return departmentMapper.searchDepartmentById(id);
+    }
+
+    @Override
+    public Page searchDepartmentByDepartmentId(int page, int rows, String searchValue) {
+        PageHelper.startPage(page,rows);
+        List<Department> list= departmentMapper.searchDepartmentByDepartmentId(searchValue);
+        Page page1=new Page();
+        page1.setRows(list);
+        PageInfo<Department> pageInfo=new PageInfo<>(list);
+        page1.setTotal(pageInfo.getTotal());
+        return page1;
+    }
+
+    @Override
+    public Page searchDepartmentByDepartmentName(int page, int rows, String searchValue) {
+        PageHelper.startPage(page,rows);
+        List<Department> list= departmentMapper.searchDepartmentByDepartmentName(searchValue);
+        Page page1=new Page();
+        page1.setRows(list);
+        PageInfo<Department> pageInfo=new PageInfo<>(list);
+        page1.setTotal(pageInfo.getTotal());
+        return page1;
     }
 
 

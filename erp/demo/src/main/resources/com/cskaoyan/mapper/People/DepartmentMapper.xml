@@ -37,4 +37,14 @@
     <select id="searchDepartmentById" parameterType="java.lang.String">
         select * from department where department_id = #{id}
     </select>
+
+    <select id="searchDepartmentByDepartmentId" resultMap="DepartmentMap">
+        SELECT department_id,department_name,note
+        FROM department where department_id like CONCAT('%',#{departmentId},'%')
+    </select>
+
+    <select id="searchDepartmentByDepartmentName" resultMap="DepartmentMap">
+         SELECT department_id,department_name,note
+        FROM department where department_name like CONCAT('%',#{departmentName},'%')
+    </select>
 </mapper>

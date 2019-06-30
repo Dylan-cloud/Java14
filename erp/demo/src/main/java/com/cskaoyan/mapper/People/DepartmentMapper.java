@@ -20,4 +20,8 @@ public interface DepartmentMapper {
     int departmentDeleteBatch(@Param("id") String departmentId);
 
     List<Department> searchDepartmentById(@Param("id") String departmentId);
+
+    List<Department> searchDepartmentByDepartmentId(String departmentId);
+
+    List<Department> searchDepartmentByDepartmentName(String departmentName);
 }

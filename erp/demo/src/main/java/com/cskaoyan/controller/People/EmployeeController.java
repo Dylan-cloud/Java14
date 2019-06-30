@@ -19,70 +19,70 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-    @RequestMapping("employee/get_data")
+    @RequestMapping("/employee/get_data")
     @ResponseBody
     public Employee[] getEmployeeData(){
         return employeeService.getEmployees();
     }
 
-    @RequestMapping("employee/find")
+    @RequestMapping("/employee/find")
     public String findEmployee(){
         return "employee_list";
     }
 
-    @RequestMapping("employee/list")
+    @RequestMapping("/employee/list")
     @ResponseBody
     public Page findAllEmployees(int page, int rows){
         return employeeService.findAllEmployees(page, rows);
     }
 
-    @RequestMapping("department/get/{id}")
+    @RequestMapping("/department/get/{id}")
     @ResponseBody
     public Department getDepartmentData(@ModelAttribute("id") String id){
         return employeeService.getDepartmentData(id);
     }
 
-    @RequestMapping("employee/add_judge")
+    @RequestMapping("/employee/add_judge")
     public String addEmployee(){
 
-        return "employee_add";
+        return "/employee_add";
     }
-    @RequestMapping("employee/add")
+    @RequestMapping("/employee/add")
     public String employeeAdd(){
 
-        return "employee_add";
+        return "/employee_add";
     }
 
-    @RequestMapping("employee/insert")
+    @RequestMapping("/employee/insert")
     @ResponseBody
     public QueryStatus employeeInsert(Employee employee){
         return employeeService.insertEmployee(employee);
     }
 
-    @RequestMapping("employee/edit_judge")
+    @RequestMapping("/employee/edit_judge")
     public String employeeEditJudge(){
-        return "employee_edit";
+        return "/employee_edit";
     }
 
-    @RequestMapping("employee/edit")
+    @RequestMapping("/employee/edit")
     public String employeeEdit(){
-        return "employee_edit";
+        return "/employee_edit";
     }
 
 
-    @RequestMapping("employee/update_all")
+    @RequestMapping("/employee/update_all")
     @ResponseBody
     public QueryStatus employeeUpdateAll(Employee employee){
         return employeeService.employeeUpdateAll(employee);
     }
 
-    @RequestMapping("employee/delete_judge")
+    @RequestMapping("/employee/delete_judge")
     @ResponseBody
     public QueryStatus employeeDeleteJudge(){
         return new QueryStatus();
     }
 
-    @RequestMapping("employee/delete_batch")
+    @RequestMapping("/employee/delete_batch")
     @ResponseBody
     public QueryStatus deleteBatch(String[] ids){
         try {
@@ -101,5 +101,23 @@ public class EmployeeController {
     public Employee selectEmployeeById(@PathVariable("deviceKeeperId")String deviceKeeperId){
         Employee employee = employeeService.selectEmployeeById(deviceKeeperId);
         return employee;
+    }
+
+    @RequestMapping("/employee/search_employee_by_employeeId")
+    @ResponseBody
+    public Page searchEmployeeByEmployeeId(int page, int rows, String searchValue){
+        return employeeService.searchEmployeeByEmployeeId(page, rows, searchValue);
+    }
+
+    @RequestMapping("/employee/search_employee_by_employeeName")
+    @ResponseBody
+    public Page searchEmployeeByEmployeeName(int page, int rows, String searchValue){
+        return employeeService.searchEmployeeByEmployeeName(page, rows, searchValue);
+    }
+
+    @RequestMapping("/employee/search_employee_by_departmentName")
+    @ResponseBody
+    public Page searchEmployeeByDepartmentName(int page, int rows, String searchValue){
+        return employeeService.searchEmployeeByDepartmentName(page, rows, searchValue);
     }
 }

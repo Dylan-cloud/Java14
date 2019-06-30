@@ -71,19 +71,19 @@ public class DepartmentController {
     }
 
 
-    @RequestMapping("department/update_all")
+    @RequestMapping("/department/update_all")
     @ResponseBody
     public QueryStatus departmentUpdateAll(Department department){
         return departmentService.departmentUpdateAll(department);
     }
 
-    @RequestMapping("department/delete_judge")
+    @RequestMapping("/department/delete_judge")
     @ResponseBody
     public QueryStatus departmentDeleteJudge(){
         return new QueryStatus();
     }
 
-    @RequestMapping("department/delete_batch")
+    @RequestMapping("/department/delete_batch")
     @ResponseBody
     public QueryStatus deleteBatch(String[] ids){
         try {
@@ -96,13 +96,15 @@ public class DepartmentController {
         }
     }
 
-    @RequestMapping("department/search_department_by_departmentId")
+    @RequestMapping("/department/search_department_by_departmentId")
     @ResponseBody
-    public Page searchDepartmentById(String id){
-        Page resultVo = new Page();
-        List<Department> departmentById = departmentService.searchDepartmentById(id);
-        resultVo.setTotal(1);
-        resultVo.setRows(departmentById);
-        return resultVo;
+    public Page searchDepartmentByDepartmentId(int page, int rows, String searchValue){
+        return departmentService.searchDepartmentByDepartmentId(page, rows, searchValue);
+    }
+
+    @RequestMapping("/department/search_department_by_departmentName")
+    @ResponseBody
+    public Page searchDepartmentByDepartmentName(int page, int rows, String searchValue){
+        return departmentService.searchDepartmentByDepartmentName(page, rows, searchValue);
     }
 }

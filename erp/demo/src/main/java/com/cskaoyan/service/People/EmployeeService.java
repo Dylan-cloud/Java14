@@ -22,4 +22,9 @@ public interface EmployeeService {
 
     QueryStatus employeeDeleteBatch(String[] ids) throws EmployeeException;
 
+    Page searchEmployeeByEmployeeId(int page, int rows, String searchValue);
+
+    Page searchEmployeeByEmployeeName(int page, int rows, String searchValue);
+
+    Page searchEmployeeByDepartmentName(int page, int rows, String searchValue);
 }

@@ -23,4 +23,9 @@ public interface EmployeeMapper {
 
     void employeeDeleteBatch(String id);
 
+    List<Employee> searchEmployeeByEmployeeId(String employeeId);
+
+    List<Employee> searchEmployeeByEmployeeName(String employeeName);
+
+    List<Employee> searchEmployeeByDepartmentName(String departmentName);
 }

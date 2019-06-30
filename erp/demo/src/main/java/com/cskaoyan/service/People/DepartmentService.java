@@ -1,5 +1,6 @@
 package com.cskaoyan.service.People;
 
+import com.cskaoyan.bean.Page;
 import com.cskaoyan.bean.People.Department;
 import com.cskaoyan.bean.QueryStatus;
 import com.cskaoyan.exception.DepartmentException;
@@ -21,4 +22,8 @@ public interface DepartmentService {
     QueryStatus departmentDeleteBatch(String[] ids) throws DepartmentException;
 
     List<Department> searchDepartmentById(String id);
+
+    Page searchDepartmentByDepartmentId(int page, int rows, String searchValue);
+
+    Page searchDepartmentByDepartmentName(int page, int rows, String searchValue);
 }

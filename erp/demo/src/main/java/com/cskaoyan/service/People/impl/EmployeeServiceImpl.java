@@ -7,6 +7,8 @@ import com.cskaoyan.bean.QueryStatus;
 import com.cskaoyan.exception.EmployeeException;
 import com.cskaoyan.mapper.People.EmployeeMapper;
 import com.cskaoyan.service.People.EmployeeService;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -100,6 +102,39 @@ public class EmployeeServiceImpl implements EmployeeService {
         return queryStatus;
 
 
+    }
+
+    @Override
+    public Page searchEmployeeByEmployeeId(int page, int rows, String searchValue) {
+        PageHelper.startPage(page,rows);
+        List<Employee> list= employeeMapper.searchEmployeeByEmployeeId(searchValue);
+        Page page1=new Page();
+        page1.setRows(list);
+        PageInfo<Employee> pageInfo=new PageInfo<>(list);
+        page1.setTotal(pageInfo.getTotal());
+        return page1;
+    }
+
+    @Override
+    public Page searchEmployeeByEmployeeName(int page, int rows, String searchValue) {
+        PageHelper.startPage(page,rows);
+        List<Employee> list= employeeMapper.searchEmployeeByEmployeeName(searchValue);
+        Page page1=new Page();
+        page1.setRows(list);
+        PageInfo<Employee> pageInfo=new PageInfo<>(list);
+        page1.setTotal(pageInfo.getTotal());
+        return page1;
+    }
+
+    @Override
+    public Page searchEmployeeByDepartmentName(int page, int rows, String searchValue) {
+        PageHelper.startPage(page,rows);
+        List<Employee> list= employeeMapper.searchEmployeeByDepartmentName(searchValue);
+        Page page1=new Page();
+        page1.setRows(list);
+        PageInfo<Employee> pageInfo=new PageInfo<>(list);
+        page1.setTotal(pageInfo.getTotal());
+        return page1;
     }
 
 }
