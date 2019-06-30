@@ -1,214 +1,71 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cskaoyan.mapper.People.EmployeeMapper">
-  <resultMap id="BaseResultMap" type="com.cskaoyan.bean.People.Employee">
-    <id column="emp_id" jdbcType="VARCHAR" property="empId" />
-    <result column="emp_name" jdbcType="VARCHAR" property="empName" />
-    <result column="sex" jdbcType="CHAR" property="sex" />
-    <result column="id_code" jdbcType="VARCHAR" property="idCode" />
-    <result column="birthday" jdbcType="DATE" property="birthday" />
-    <result column="join_date" jdbcType="DATE" property="joinDate" />
-    <result column="status" jdbcType="VARCHAR" property="status" />
-    <result column="education" jdbcType="VARCHAR" property="education" />
-    <result column="degree" jdbcType="VARCHAR" property="degree" />
-    <result column="major" jdbcType="VARCHAR" property="major" />
-    <result column="graduate_school" jdbcType="VARCHAR" property="graduateSchool" />
-    <result column="education_form" jdbcType="VARCHAR" property="educationForm" />
-    <result column="department_id" jdbcType="VARCHAR" property="departmentId" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    emp_id, emp_name, sex, id_code, birthday, join_date, status, education, degree, major, 
-    graduate_school, education_form, department_id
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from employee
-    where emp_id = #{empId,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
-    delete from employee
-    where emp_id = #{empId,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.cskaoyan.bean.People.Employee">
-    insert into employee (emp_id, emp_name, sex, 
-      id_code, birthday, join_date, 
-      status, education, degree, 
-      major, graduate_school, education_form, 
-      department_id)
-    values (#{empId,jdbcType=VARCHAR}, #{empName,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, 
-      #{idCode,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, #{joinDate,jdbcType=DATE}, 
-      #{status,jdbcType=VARCHAR}, #{education,jdbcType=VARCHAR}, #{degree,jdbcType=VARCHAR}, 
-      #{major,jdbcType=VARCHAR}, #{graduateSchool,jdbcType=VARCHAR}, #{educationForm,jdbcType=VARCHAR}, 
-      #{departmentId,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.cskaoyan.bean.People.Employee">
-    insert into employee
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="empId != null">
-        emp_id,
-      </if>
-      <if test="empName != null">
-        emp_name,
-      </if>
-      <if test="sex != null">
-        sex,
-      </if>
-      <if test="idCode != null">
-        id_code,
-      </if>
-      <if test="birthday != null">
-        birthday,
-      </if>
-      <if test="joinDate != null">
-        join_date,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-      <if test="education != null">
-        education,
-      </if>
-      <if test="degree != null">
-        degree,
-      </if>
-      <if test="major != null">
-        major,
-      </if>
-      <if test="graduateSchool != null">
-        graduate_school,
-      </if>
-      <if test="educationForm != null">
-        education_form,
-      </if>
-      <if test="departmentId != null">
-        department_id,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="empId != null">
-        #{empId,jdbcType=VARCHAR},
-      </if>
-      <if test="empName != null">
-        #{empName,jdbcType=VARCHAR},
-      </if>
-      <if test="sex != null">
-        #{sex,jdbcType=CHAR},
-      </if>
-      <if test="idCode != null">
-        #{idCode,jdbcType=VARCHAR},
-      </if>
-      <if test="birthday != null">
-        #{birthday,jdbcType=DATE},
-      </if>
-      <if test="joinDate != null">
-        #{joinDate,jdbcType=DATE},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=VARCHAR},
-      </if>
-      <if test="education != null">
-        #{education,jdbcType=VARCHAR},
-      </if>
-      <if test="degree != null">
-        #{degree,jdbcType=VARCHAR},
-      </if>
-      <if test="major != null">
-        #{major,jdbcType=VARCHAR},
-      </if>
-      <if test="graduateSchool != null">
-        #{graduateSchool,jdbcType=VARCHAR},
-      </if>
-      <if test="educationForm != null">
-        #{educationForm,jdbcType=VARCHAR},
-      </if>
-      <if test="departmentId != null">
-        #{departmentId,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.cskaoyan.bean.People.Employee">
-    update employee
-    <set>
-      <if test="empName != null">
-        emp_name = #{empName,jdbcType=VARCHAR},
-      </if>
-      <if test="sex != null">
-        sex = #{sex,jdbcType=CHAR},
-      </if>
-      <if test="idCode != null">
-        id_code = #{idCode,jdbcType=VARCHAR},
-      </if>
-      <if test="birthday != null">
-        birthday = #{birthday,jdbcType=DATE},
-      </if>
-      <if test="joinDate != null">
-        join_date = #{joinDate,jdbcType=DATE},
-      </if>
-      <if test="status != null">
-        status = #{status,jdbcType=VARCHAR},
-      </if>
-      <if test="education != null">
-        education = #{education,jdbcType=VARCHAR},
-      </if>
-      <if test="degree != null">
-        degree = #{degree,jdbcType=VARCHAR},
-      </if>
-      <if test="major != null">
-        major = #{major,jdbcType=VARCHAR},
-      </if>
-      <if test="graduateSchool != null">
-        graduate_school = #{graduateSchool,jdbcType=VARCHAR},
-      </if>
-      <if test="educationForm != null">
-        education_form = #{educationForm,jdbcType=VARCHAR},
-      </if>
-      <if test="departmentId != null">
-        department_id = #{departmentId,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where emp_id = #{empId,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.cskaoyan.bean.People.Employee">
-    update employee
-    set emp_name = #{empName,jdbcType=VARCHAR},
-      sex = #{sex,jdbcType=CHAR},
-      id_code = #{idCode,jdbcType=VARCHAR},
-      birthday = #{birthday,jdbcType=DATE},
-      join_date = #{joinDate,jdbcType=DATE},
-      status = #{status,jdbcType=VARCHAR},
-      education = #{education,jdbcType=VARCHAR},
-      degree = #{degree,jdbcType=VARCHAR},
-      major = #{major,jdbcType=VARCHAR},
-      graduate_school = #{graduateSchool,jdbcType=VARCHAR},
-      education_form = #{educationForm,jdbcType=VARCHAR},
-      department_id = #{departmentId,jdbcType=VARCHAR}
-    where emp_id = #{empId,jdbcType=VARCHAR}
-  </update>
+<resultMap id="baseMap" type="employee">
+    <result property="birthday" column="birthday"/>
+    <result property="degree" column="degree"/>
+    <result property="education" column="education"/>
+    <result property="educationForm" column="education_form"/>
+    <result property="empId" column="emp_id"/>
+    <result property="empName" column="emp_name"/>
+    <result property="graduateSchool" column="graduate_school"/>
+    <result property="idCode" column="id_code"/>
+    <result property="joinDate" column="join_date"/>
+    <result property="major" column="major"/>
+    <result property="sex" column="sex"/>
+    <result property="status" column="status"/>
+    <association property="department" javaType="department">
+        <result property="departmentId" column="department_id"/>
+        <result property="departmentName" column="department_name"/>
+        <result property="note" column="note"/>
+    </association>
+</resultMap>
+    <select id="getEmployees" resultMap="baseMap">
+        select birthday,degree,education,education_form,emp_id,emp_name,graduate_school,id_code,join_date,major,sex,status,department.department_id
+        from employee left join department on employee.department_id=department.department_id
+    </select>
+    <select id="selectEmployeeById" resultMap="baseMap">
+        select birthday,degree,education,education_form,emp_id,emp_name,graduate_school,id_code,join_date,major,sex,status,department.department_id
+        from employee left join department on employee.department_id=department.department_id
+        where employee.emp_id=#{deviceKeeperId}
+    </select>
+    <select id="findAllEmployees" resultMap="baseMap">
+        SELECT d.emp_id,d.emp_name,d.sex,d.id_code,d.birthday,d.join_date,d.status,d.education,
+        d.degree,d.major,d.graduate_school,d.education_form,d.department_id,u.department_id AS departmentId,u.department_Name,u.note FROM
+        employee d LEFT JOIN department u
+        ON d.department_id = u.department_id
+        limit #{offset} , #{rows}
+    </select>
 
+    <select id="findEmployeeTotal" resultType="int">
+        select count(*) from employee
+    </select>
 
-  <select id="findAllEmployee" resultMap="BaseResultMap">
-    select * from employee
-  </select>
+    <select id="getDepartmentData" resultType="com.cskaoyan.bean.People.Department">
+        select department_id as departmentId,department_name as departmentName,
+        note from department where department_id = #{id}
+    </select>
 
-  <select id="selectByName" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from employee
-    where employee_name = #{employeeName}
-  </select>
+    <update id="employeeUpdateAll" parameterType="com.cskaoyan.bean.People.Employee">
+        update employee set birthday = #{birthday},degree = #{degree},education = #{education},
+        education_form = #{educationForm},
+        emp_name = #{empName},graduate_school = #{graduateSchool} ,department_id = #{departmentId},
+        id_code = #{idCode},join_date = #{joinDate},
+        major = #{major},sex = #{sex},status = #{status} where emp_id = #{empId}
+    </update>
 
-  <delete id="deleteBatchEmployeeByIds">
-    delete from employee where employee_id in
-    <foreach collection="ids" item="id" separator="," open="(" close=")">
-      #{id}
-    </foreach>
-  </delete>
+    <insert id="insertEmployee" parameterType="com.cskaoyan.bean.People.Employee">
+        insert into employee (birthday,degree,education,education_form,emp_id,
+        emp_name,graduate_school,id_code,join_date,major,sex,status,
+        department_id) values (#{birthday},#{degree},#{education},#{educationForm},
+        #{empId},#{empName},#{graduateSchool},#{idCode},#{joinDate},#{major},
+        #{sex},#{status},#{departmentId})
+    </insert>
 
-  <select id="findOneEmployeeById" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List"/>
-    from employee
-    where employee_id = #{employeeId}
-  </select>
+    <delete id="employeeDeleteBatch" parameterType="String">
+        delete from employee where emp_id = #{id}
+    </delete>
+
 </mapper>

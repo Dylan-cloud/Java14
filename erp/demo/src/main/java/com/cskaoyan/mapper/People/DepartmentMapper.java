@@ -6,21 +6,18 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface DepartmentMapper {
-    int deleteByPrimaryKey(String departmentId);
 
-    int insert(Department record);
+    List<Department> findAllDepartment(@Param("rows") int rows, @Param("offset") int offset);
 
-    int insertSelective(Department record);
+    int findTotal();
 
-    Department selectByPrimaryKey(String departmentId);
+    int insertDepartment(Department department);
 
-    int updateByPrimaryKeySelective(Department record);
+    List<Department> getDepartmentData();
 
-    int updateByPrimaryKey(Department record);
+    int departmentUpdateAll(Department department);
 
-    List<Department> findAllDepartment(@Param("offset") Integer offest, @Param("rows") Integer rows);
+    int departmentDeleteBatch(@Param("id") String departmentId);
 
-    int deleteBatchDepartmentByIds(@Param("ids") String[] ids);
-
-
+    List<Department> searchDepartmentById(@Param("id") String departmentId);
 }

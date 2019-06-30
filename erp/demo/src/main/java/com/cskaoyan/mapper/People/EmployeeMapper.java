@@ -1,26 +1,26 @@
 package com.cskaoyan.mapper.People;
 
+import com.cskaoyan.bean.People.Department;
 import com.cskaoyan.bean.People.Employee;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 public interface EmployeeMapper {
-    int deleteByPrimaryKey(String empId);
+    Employee[] getEmployees();
 
-    int insert(Employee record);
+    Employee selectEmployeeById(@Param("deviceKeeperId") String deviceKeeperId);
 
-    int insertSelective(Employee record);
+    List<Employee> findAllEmployees(@Param("rows") int rows, @Param("offset") int offset);
 
-    Employee selectByPrimaryKey(String empId);
+    int findEmployeeTotal();
 
-    int updateByPrimaryKeySelective(Employee record);
+    Department getDepartmentData(@Param("id") String id);
 
-    int updateByPrimaryKey(Employee record);
+    int employeeUpdateAll(Employee employee);
 
-    List<Employee> findAllEmployee(@Param("offset") Integer offest, @Param("rows") Integer rows);
+    int insertEmployee(Employee employee);
 
-    int deleteBatchEmployeeByIds(@Param("ids") String[] ids);
-
+    void employeeDeleteBatch(String id);
 
 }
