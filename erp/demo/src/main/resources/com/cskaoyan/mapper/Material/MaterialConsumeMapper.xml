@@ -12,8 +12,17 @@
     <result column="note" jdbcType="VARCHAR" property="note" />
     <association property="material" column="material_id"
                  select="com.cskaoyan.mapper.Material.MaterialMapper.selectByPrimaryKey"></association>
-    <!--<association property="work" column="work_id"
+    <!--<association property="work"
                  select="com.cskaoyan.mapper.Material.WorkMapper.selectByPrimaryKey"></association>-->
+    <association property="work" javaType="com.cskaoyan.bean.plan.Work" column="work_id"
+                 select="com.cskaoyan.mapper.plan.WorkMapper.selectByPrimaryKeys">
+     <!-- <id column="work_id" property="workId" jdbcType="VARCHAR"/>
+      <result column="process_number" property="processNumber" jdbcType="VARCHAR"/>
+      <result column="product_id" property="productId" jdbcType="VARCHAR"/>
+      <result column="process_id" property="processId" jdbcType="VARCHAR"/>
+      <result column="device_id" property="deviceId" jdbcType="VARCHAR"/>
+      <result column="rating" property="rating" jdbcType="INTEGER"/>-->
+    </association>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>

@@ -36,6 +36,14 @@
             <result column="note" property="note" jdbcType="VARCHAR"/>
         </association>
     </resultMap>
+    <resultMap id="AddResultMap" type="com.cskaoyan.bean.plan.Work">
+    <id column="work_id" jdbcType="VARCHAR" property="workId"/>
+    <result column="process_number" jdbcType="VARCHAR" property="processNumber"/>
+    <result column="product_id" jdbcType="VARCHAR" property="productId"/>
+    <result column="process_id" jdbcType="VARCHAR" property="processId"/>
+    <result column="device_id" jdbcType="VARCHAR" property="deviceId"/>
+    <result column="rating" jdbcType="INTEGER" property="rating"/>
+    </resultMap>
     <!--查询所有的记录-->
     <select id="findAllWork" resultMap="BaseResultMap">
     select
@@ -140,6 +148,12 @@
     work_id, process_number, product_id, process_id, device_id, rating
   </sql>
     <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from work
+        where work_id = #{workId,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByPrimaryKeys" parameterType="java.lang.String" resultMap="AddResultMap">
         select
         <include refid="Base_Column_List"/>
         from work
