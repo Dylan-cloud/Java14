@@ -1,6 +1,7 @@
 package com.cskaoyan.bean.Material;
 
-import com.sun.corba.se.spi.orbutil.threadpool.Work;
+
+import com.cskaoyan.bean.plan.Work;
 
 public class MaterialConsume {
     private String consumeId;
@@ -22,6 +23,14 @@ public class MaterialConsume {
     private Material material;
 
     private Work work;
+
+    public Work getWork() {
+        return work;
+    }
+
+    public void setWork(Work work) {
+        this.work = work;
+    }
 
     public String getConsumeId() {
         return consumeId;
@@ -95,11 +104,4 @@ public class MaterialConsume {
         this.material = material;
     }
 
-    public Work getWork() {
-        return work;
-    }
-
-    public void setWork(Work work) {
-        this.work = work;
-    }
 }
