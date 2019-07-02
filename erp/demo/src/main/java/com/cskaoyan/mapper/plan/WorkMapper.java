@@ -28,4 +28,6 @@ public interface WorkMapper {
     int updateByPrimaryKey(Work record);
 
     List<WorkVO> findAllWork();
+
+    List<Work> selectByPrimaryKeys(String workId);
 }
